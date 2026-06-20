@@ -216,6 +216,44 @@ main { padding-top: var(--nav-h); }
   position: relative;
   overflow: hidden;
 }
+.hero {
+  background: var(--cream);
+  color: var(--ink);
+  padding: clamp(60px, 9vw, 110px) 0 clamp(50px, 7vw, 90px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decoraciones punteadas */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 36%;
+  height: 75%;
+  background-image: radial-gradient(circle, var(--navy) 1.4px, transparent 1.4px);
+  background-size: 14px 14px;
+  opacity: 0.35;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 140px;
+  height: 140px;
+  background-image: radial-gradient(circle, var(--rose) 1.6px, transparent 1.6px);
+  background-size: 16px 16px;
+  opacity: 0.30;
+  z-index: 0;
+}
+
 .container { width: 90%; max-width: 1280px; margin-inline: auto; }
 .hero-inner {
   display: grid;
@@ -225,6 +263,7 @@ main { padding-top: var(--nav-h); }
   position: relative;
   z-index: 1;
 }
+
 .hero-foto-wrap { display: flex; justify-content: center; }
 .hero-foto {
   width: clamp(220px, 26vw, 340px); aspect-ratio: 1;
@@ -297,6 +336,13 @@ main { padding-top: var(--nav-h); }
   line-height: 1.1; color: var(--navy); font-weight: 400;
 }
 .section-header h2 em { color: var(--rose); font-style: italic; }
+.section-header .subtitle {
+  max-width: 620px;
+  margin: 18px auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(14,31,51,0.7);
+}
 .areas-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -558,3 +604,227 @@ details.faq[open] .faq-icon { transform: rotate(45deg); }
 .faq-body ul { margin-left: 20px; margin-bottom: 18px; }
 .faq-body li { font-size: 0.93rem; line-height: 1.65; color: rgba(14,31,51,0.78); margin-bottom: 6px; }
 .faq-fecha { font-size: 0.78rem; color: rgba(14,31,51,0.5); margin-top: 18px; font-style: italic; }
+/* ── ÁREAS MEJORADAS (CON FEATURES) ── */
+.area-card {
+  background: var(--white);
+  border: 1px solid #e5d8cf;
+  border-top: 4px solid var(--rose);
+  border-radius: 6px;
+  padding: 30px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--t);
+  position: relative;
+}
+.area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(14,31,51,0.10);
+}
+.area-card.destacada {
+  background: linear-gradient(180deg, #fff 0%, #fdf6f3 100%);
+  border-top-width: 5px;
+  grid-column: span 2;
+}
+.area-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.area-card h3 {
+  font-family: var(--f-serif);
+  font-size: 1.55rem;
+  color: var(--navy);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.area-card.destacada h3 {
+  font-size: 2rem;
+}
+.area-card p {
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: rgba(14,31,51,0.72);
+  margin-bottom: 18px;
+  flex: 1;
+}
+.area-features {
+  list-style: none;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.area-features li {
+  font-size: 0.82rem;
+  color: var(--navy);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.area-features .check {
+  color: var(--rose);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.area-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding-top: 18px;
+  border-top: 1px solid #e5d8cf;
+  transition: var(--t);
+}
+.area-card:hover .area-cta {
+  color: var(--rose);
+}
+.area-cta .arrow {
+  transition: transform var(--t);
+}
+.area-card:hover .area-cta .arrow {
+  transform: translateX(4px);
+}
+
+/* ── PROCESO ── */
+.proceso-section {
+  background: var(--mist);
+  padding: clamp(60px, 9vw, 100px) 0;
+}
+.proceso-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.proceso-paso {
+  text-align: center;
+  padding: 20px 18px;
+  position: relative;
+}
+.proceso-num {
+  font-family: var(--f-display);
+  font-size: 3.5rem;
+  color: var(--rose);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.proceso-paso h4 {
+  font-family: var(--f-serif);
+  font-size: 1.25rem;
+  color: var(--navy);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.proceso-paso p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(14,31,51,0.7);
+}
+
+/* ── SOBRE NOELIA ── */
+.sobre-section {
+  padding: clamp(60px, 9vw, 100px) 0;
+  background: var(--cream);
+}
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.sobre-texto .tag-rosa {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.sobre-texto h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--navy);
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+.sobre-texto h2 em {
+  color: var(--rose);
+  font-style: italic;
+}
+.sobre-texto p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(14,31,51,0.78);
+  margin-bottom: 14px;
+}
+.sobre-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid #e5d8cf;
+  padding: 22px 20px;
+  border-radius: 6px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--f-serif);
+  font-size: 2.4rem;
+  color: var(--rose);
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: rgba(14,31,51,0.65);
+  text-transform: uppercase;
+}
+
+/* ── ÁREAS GRID ── */
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sobre-inner {
+    grid-template-columns: 1fr;
+  }
+  .area-card.destacada {
+    grid-column: span 1;
+  }
+  .proceso-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 720px) {
+  .areas-grid {
+    grid-template-columns: 1fr;
+  }
+  .area-card {
+    padding: 24px 22px 22px;
+  }
+  .area-card.destacada h3 {
+    font-size: 1.7rem;
+  }
+  .sobre-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
