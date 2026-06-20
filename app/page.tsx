@@ -1,65 +1,72 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <div className="container">
+          <div className="hero-inner">
+            <div className="hero-foto-wrap">
+              <div className="hero-foto">FOTO PROFESIONAL</div>
+            </div>
+            <div>
+              <h1 className="hero-nombre">Dra. Noelia Basualdo</h1>
+              <div className="hero-subtitulo">Estudio Juridico - Abogada Previsionalista</div>
+              <div className="hero-divisor"></div>
+              <p className="hero-tagline">Tu derecho, nuestro compromiso</p>
+              <p className="hero-bajada">Asesoramiento personalizado en jubilaciones, reajustes, fuerzas armadas y amparos de salud.</p>
+              <p className="hero-firma"><strong>Mas de 10 anos</strong> acompanando a quienes buscan respuestas claras.</p>
+              <div className="hero-actions">
+                <Link href="/contacto" className="btn btn-rose">Consultar mi caso</Link>
+                <Link href="#areas" className="btn btn-outline">Ver areas</Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="areas-section" id="areas">
+        <div className="container">
+          <div className="section-header">
+            <div className="tag-rosa">Especialidades</div>
+            <h2>Areas de practica</h2>
+          </div>
+          <div className="areas-grid">
+            <div className="area-card">
+              <span className="area-badge">Derecho Previsional</span>
+              <h3>Jubilaciones y Pensiones</h3>
+              <p>Tramitacion completa de jubilaciones ordinarias, anticipadas y especiales.</p>
+              <Link href="/area-jubilaciones" className="area-cta">Mas informacion</Link>
+            </div>
+            <div className="area-card">
+              <span className="area-badge">Haberes Previsionales</span>
+              <h3>Reajustes de Haberes</h3>
+              <p>Reclamos y tramitacion de reajustes en jubilaciones, pensiones y haberes.</p>
+              <Link href="/area-reajustes" className="area-cta">Mas informacion</Link>
+            </div>
+            <div className="area-card">
+              <span className="area-badge">Proteccion de Derechos</span>
+              <h3>Amparos de Salud</h3>
+              <p>Defensa contra aumentos de cuota, cambios de cobertura y negaciones.</p>
+              <Link href="/area-salud" className="area-cta">Mas informacion</Link>
+            </div>
+            <div className="area-card">
+              <span className="area-badge">Veteranos de Malvinas</span>
+              <h3>Jubilacion y Pension Honorifica</h3>
+              <p>Tramitacion y asesoramiento integral para Veteranos de Malvinas.</p>
+              <Link href="/area-malvinas" className="area-cta">Mas informacion</Link>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="cta-banda">
+        <div className="container">
+          <h2>Necesitas asesoramiento?</h2>
+          <p>Contactame sin compromiso. La primera consulta es para entender tu situacion.</p>
+          <Link href="/contacto" className="btn">Agendar Consulta</Link>
+        </div>
+      </section>
+    </>
   );
 }
