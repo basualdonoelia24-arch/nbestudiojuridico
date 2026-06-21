@@ -24,7 +24,7 @@ export default function Navbar() {
 
         <div className="nav-links">
           <Link href="/">Inicio</Link>
-          <div className="has-dropdown" onMouseLeave={() => setDropdownOpen(false)}>
+          <div className="has-dropdown">
             <button 
               className="dropdown-toggle" 
               aria-expanded={dropdownOpen}
@@ -48,7 +48,7 @@ export default function Navbar() {
         <button 
           className="nav-hamburger"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menú"
+          aria-label="Menu"
         >
           <span></span>
           <span></span>
@@ -56,12 +56,11 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MENÚ MOBILE */}
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
         <button 
           className="mobile-close"
           onClick={() => setMobileOpen(false)}
-          aria-label="Cerrar menú"
+          aria-label="Cerrar menu"
         >
           ✕
         </button>
@@ -70,10 +69,10 @@ export default function Navbar() {
           <summary>Previsional</summary>
           <Link href="/area-jubilaciones" onClick={() => setMobileOpen(false)}>Jubilaciones y Pensiones</Link>
           <Link href="/area-reajustes" onClick={() => setMobileOpen(false)}>Reajustes</Link>
-          <span className="mobile-proxim">IPS · Próximamente</span>
+          <span className="mobile-proxim">IPS · Proximamente</span>
           <Link href="/area-malvinas" onClick={() => setMobileOpen(false)}>Veteranos de Malvinas</Link>
-          <span className="mobile-proxim">Fuerzas Armadas y Seguridad · Próximamente</span>
-          <span className="mobile-proxim">Docentes · Próximamente</span>
+          <span className="mobile-proxim">Fuerzas Armadas y Seguridad · Proximamente</span>
+          <span className="mobile-proxim">Docentes · Proximamente</span>
         </details>
         <Link href="/area-salud" onClick={() => setMobileOpen(false)}>Salud</Link>
         <Link href="/el-estudio" onClick={() => setMobileOpen(false)}>El Estudio</Link>
