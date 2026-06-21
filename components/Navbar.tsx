@@ -35,7 +35,10 @@ export default function Navbar() {
             <div className={`dropdown-menu ${dropdownOpen ? 'open' : ''}`}>
               <Link href="/area-jubilaciones">Jubilaciones y Pensiones</Link>
               <Link href="/area-reajustes">Reajustes</Link>
+              <div className="dropdown-disabled">IPS <span className="proxim">Proximamente</span></div>
               <Link href="/area-malvinas">Veteranos de Malvinas</Link>
+              <div className="dropdown-disabled">Fuerzas Armadas y Seguridad <span className="proxim">Proximamente</span></div>
+              <div className="dropdown-disabled">Docentes <span className="proxim">Proximamente</span></div>
             </div>
           </div>
           <Link href="/area-salud">Salud</Link>
