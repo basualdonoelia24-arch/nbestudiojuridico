@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="hero">
+      <section className="hero home">
         <div className="container">
           <div className="hero-inner">
             <div className="hero-foto-wrap">
@@ -16,7 +16,7 @@ export default function Home() {
               <div className="hero-divisor"></div>
               <p className="hero-tagline">Tu derecho, nuestro compromiso</p>
               <p className="hero-bajada">Asesoramiento personalizado en jubilaciones, reajustes, fuerzas armadas y amparos de salud. Atención virtual o presencial en todo el país, con un trato cercano y honesto desde la primera consulta.</p>
-              <p className="hero-firma"><strong>Más de 10 años</strong> acompañando a quienes buscan respuestas claras.</p>
+              <p className="hero-firma"><strong>Más de 15 años</strong> acompañando a quienes buscan respuestas claras.</p>
               <div className="hero-actions">
                 <Link href="/contacto" className="btn btn-rose">Consultar mi caso</Link>
                 <Link href="#areas" className="btn btn-outline">Ver áreas de práctica</Link>
