@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 export default function Home() {
   return (
     <>
@@ -10,18 +9,19 @@ export default function Home() {
             <div className="hero-foto-wrap">
               <div className="hero-foto">FOTO PROFESIONAL</div>
             </div>
-            <div>
-              <h1 className="hero-nombre">Dra. Noelia Basualdo</h1>
-              <div className="hero-subtitulo">Estudio Jurídico - Abogada Previsionalista</div>
-              <div className="hero-divisor"></div>
-              <p className="hero-tagline">Tu derecho, nuestro compromiso</p>
-              <p className="hero-bajada">Asesoramiento personalizado en jubilaciones, reajustes, fuerzas armadas y amparos de salud. Atención virtual o presencial en todo el país, con un trato cercano y honesto desde la primera consulta.</p>
-              <p className="hero-firma"><strong>Más de 15 años</strong> acompañando a quienes buscan respuestas claras.</p>
-              <div className="hero-actions">
-                <Link href="/contacto" className="btn btn-rose">Consultar mi caso</Link>
-                <Link href="#areas" className="btn btn-outline">Ver áreas de práctica</Link>
-              </div>
-            </div>
+            <div className="hero-texto">
+               <h1 className="hero-nombre">Dra. Noelia Basualdo</h1>
+            <div className="hero-subtitulo">ESTUDIO JURÍDICO · ABOGADA PREVISIONALISTA</div>
+            <div className="hero-divisor"></div>
+               <p className="hero-tagline">Cada caso es único. Nuestra estrategia también.</p>
+               <p className="hero-tagline">Porque detrás de cada expediente hay una persona.</p>
+               <p className="hero-bajada">Asesoramiento personalizado en jubilaciones, reajustes, fuerzas armadas y amparos de salud. Atención virtual o presencial en todo el país, con un trato cercano y honesto desde la primera consulta.</p>
+               <p className="hero-firma"><strong>Más de 15 años</strong> acompañando a quienes buscan respuestas claras.</p>
+            <div className="hero-actions">
+    <Link href="/contacto" className="btn btn-rose">Consultar mi caso</Link>
+    <Link href="#areas" className="btn btn-outline">Ver áreas de práctica</Link>
+  </div>
+</div>
           </div>
         </div>
       </section>

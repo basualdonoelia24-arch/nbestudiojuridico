@@ -16,8 +16,9 @@ export default function Navbar() {
             <div className="logo-nb">NB</div>
             <div className="logo-divisor"></div>
             <div className="logo-textos">
-              <div className="logo-nombre">Noelia Basualdo</div>
-              <div className="logo-estudio">Abogada</div>
+              <div className="logo-nombre">NOELIA</div>
+              <div className="logo-nombre"> BASUALDO</div>
+              <div className="logo-estudio">ESTUDIO JURÍDICO</div>
             </div>
           </div>
         </Link>
