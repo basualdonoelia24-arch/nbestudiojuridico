@@ -70,7 +70,8 @@ export default function Navbar() {
         </button>
         <Link href="/" onClick={() => setMobileOpen(false)}>Inicio</Link>
         <details ref={dropdownRef} className="mobile-dropdown">
-          <summary>Previsional</summary>
+          <details ref={dropdownRef} className="mobile-dropdown">
+           <summary onClick={() => setMobileOpen(false)}>Previsional</summary>
           <Link href="/area-jubilaciones" onClick={() => setMobileOpen(false)}>Jubilaciones y Pensiones</Link>
           <Link href="/area-reajustes" onClick={() => setMobileOpen(false)}>Reajustes</Link>
           <span className="mobile-proxim">IPS · Proximamente</span>
