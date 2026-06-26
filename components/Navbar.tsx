@@ -1,12 +1,19 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+  setMobileOpen(false);
+  setDropdownOpen(false);
+}, [pathname]);
 
   return (
     <nav className="main-nav">
@@ -70,8 +77,7 @@ export default function Navbar() {
         </button>
         <Link href="/" onClick={() => setMobileOpen(false)}>Inicio</Link>
         <details ref={dropdownRef} className="mobile-dropdown">
-          <details ref={dropdownRef} className="mobile-dropdown">
-           <summary onClick={() => setMobileOpen(false)}>Previsional</summary>
+          <summary onClick={() => setMobileOpen(false)}>Previsional</summary>
           <Link href="/area-jubilaciones" onClick={() => setMobileOpen(false)}>Jubilaciones y Pensiones</Link>
           <Link href="/area-reajustes" onClick={() => setMobileOpen(false)}>Reajustes</Link>
           <span className="mobile-proxim">IPS · Proximamente</span>

@@ -67,7 +67,15 @@ nav.main-nav {
 .mobile-menu.open { transform: translateX(0); }
 .mobile-menu a { color: var(--white); font-size: 1.4rem; letter-spacing: 0.06em; }
 .mobile-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--white); font-size: 1.6rem; cursor: pointer; }
-
+@media (min-width: 861px) {
+  .mobile-menu {
+    display: none !important;
+    transform: translateX(100%) !important;
+  }
+  .mobile-menu.open {
+    transform: translateX(100%) !important;
+  }
+}
 /* Dropdown */
 .nav-links .has-dropdown { position: relative; }
 .dropdown-toggle {
@@ -350,7 +358,7 @@ main { padding-top: var(--nav-h); }
 .hero-actions .btn { padding: 15px 30px; }
 
 /* ── ÁREAS ── */
-.areas-section { padding: clamp(30px, 5vw, 60px) 0; background: var(--cream); }
+.areas-section { padding: clamp(30px, 5vw, 60spx) 0; background: var(--cream); }
 .section-header { text-align: center; margin-bottom: clamp(10px, 2vw, 20px); }
 .section-header .tag-rosa {
   display: inline-block; font-size: 0.65rem; letter-spacing: 0.24em;
