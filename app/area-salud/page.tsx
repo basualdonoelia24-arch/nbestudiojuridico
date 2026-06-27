@@ -129,40 +129,39 @@ export default function AreaSalud() {
                 Obras Sociales y Prepagas
             </div>
             <h1>Salud · <em>Obras Sociales y Prepagas</em></h1>
-            <p className="hero-sub">Defensa de tus derechos en salud frente a obras sociales, prepagas y el Estado. Amparos por aumentos de cuota, mantenimiento de cobertura al jubilarse, medicamentos oncológicos, discapacidad y más.</p>
-            <div className="hero-cta-row">
-              <Link href="/contacto" className="btn btn-rose">Consultar mi caso</Link>
+            <p className="hero-sub"style={{ maxWidth: '550px', margin: '0 auto 30px'}}>Defendemos tu derecho a la salud frente a obras sociales, prepagas y el Estado en todos sus niveles. Atendemos amparos por aumentos abusivos, mantenimiento de cobertura al jubilarse, medicamentos de alto costo, discapacidad, fertilización asistida y más.</p>
+              <div className="hero-cta-row">
+            <Link href="/contacto" className="btn btn-rose">Contactanos →</Link>
+            <Link href="#faq" className="btn btn-outline-white">Ver preguntas frecuentes</Link>
+          </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* SECCIÓN PRINCIPAL */}
       <section className="section">
         <div className="section-narrow">
-          <div className="section-head">
-            <span className="tag" style={{ color: 'var(--rose)' }}>Cómo trabajamos los casos de salud</span>
-            <h2>El primer paso es <em>entender tu caso</em></h2>
-            <p className="sub">Cada caso de salud es distinto y requiere análisis específico. El marco legal cambió mucho desde el DNU 70/2023 y hoy la jurisprudencia es clave. Por eso, antes de iniciar cualquier reclamo, revisamos tu situación completa para definir la mejor estrategia.</p>
+          <div className="secciones-titulo fade-in">
+            <span className="tag">Qué incluye esta áreaCómo trabajamos los casos de salud</span>
+            <h3>El primer paso es <em> entender tu caso</em></h3>
+            <p>Cada caso de salud es distinto y requiere análisis específico. El marco legal cambió mucho desde el DNU 70/2023 y hoy la jurisprudencia es clave. Por eso, antes de iniciar cualquier reclamo, revisamos tu situación completa para definir la mejor estrategia.</p>
+            <p style={{ fontSize: '0.85rem', color: 'var(--gray-text)', fontStyle: 'italic', marginTop: '14px' }}>Hacé click en cada servicio para ver el detalle</p>
           </div>
 
           {/* ANÁLISIS PREVISIONAL */}
-          <div className="analisis-principal">
-            <div className="analisis-badge">★ Análisis previo</div>
-            <h3>Análisis previsional <em>personalizado</em></h3>
-            <div className="analisis-tagline">Cada expediente cuenta una historia distinta</div>
-            <p>A modo de ejemplo: una persona que se jubiló en 2004 no se reclama igual que una que se jubiló en 2024. La normativa cambió, hubo períodos especiales (como la pandemia) y cada jurisdicción tiene criterios distintos.</p>
-            <p>Antes de iniciar cualquier reclamo, analizamos tu caso completo para definir <strong>la estrategia más efectiva</strong> según:</p>
-            <ul style={{ margin: '12px 0 14px 22px', padding: 0 }}>
-              <li style={{ marginBottom: '6px' }}>Tu tipo de cobertura (obra social, prepaga, PAMI)</li>
-              <li style={{ marginBottom: '6px' }}>La normativa aplicable a tu caso específico</li>
-              <li style={{ marginBottom: '6px' }}>La jurisprudencia vigente en tu jurisdicción</li>
-              <li>Los errores administrativos que detectemos</li>
-            </ul>
-            <div className="compromiso">
-              💡 <strong>Mi compromiso:</strong> No prometo resultados sin haber visto tu caso. Pero sí te digo con honestidad qué se puede reclamar, qué expectativas son razonables y si conviene actuar con urgencia.
-            </div>
-          </div>
+          <div className="destacado fade-in">
+          <div className="destacado-badge">★ Análisis previo</div>
+          <div className="destacado-grid">
+          <div className="destacado-icon">⚖️</div>
+          <div className="destacado-content">
+            <h3>Conocer tus derechos es el primer paso</h3>
+            <p>Muchas personas pagan tratamientos de su bolsillo, aceptan aumentos abusivos o renuncian a coberturas que les corresponden, simplemente porque no saben que tienen derecho a reclamar.</p>
+            <p>Antes de iniciar una acción legal, te explicamos qué cobertura te corresponde por ley, qué aumentos son legales, en qué casos podés exigir devolución y cuándo conviene amparo, mediación o reclamo administrativo.</p>
+            <p><strong>Mi compromiso:</strong> Te digo con honestidad qué se puede reclamar, qué expectativas son razonables y si conviene actuar con urgencia.</p>
+            <Link href="/contacto" className="btn btn-rose" style={{ fontSize: '0.72rem', padding: '11px 20px' }}>Consultar este servicio →</Link>
+         </div>
+         </div>
+         </div>
 
           {/* SERVICIOS */}
           <div className="secciones-titulo">
@@ -224,11 +223,13 @@ export default function AreaSalud() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="cta-banda">
-        <h2>¿Tu obra social o prepaga te <em>negó</em> algo?</h2>
-        <p>No esperes. Consultá con nosotros y evaluamos tu caso sin costo.</p>
-        <Link href="/contacto" className="btn btn-outline-white">Contactanos →</Link>
-      </section>
+      {/* CTA FINAL */}
+        {/* CTA FINAL */}
+       <section className="cta-banda">
+       <h2>¿Tu obra social o prepaga te <em>negó</em> algo?</h2>
+       <p>Cada caso de salud requiere un análisis específico. Contactanos y evaluamos en detalle si tu situación amerita un amparo y cuál es la mejor estrategia para defender tus derechos.</p>
+       <Link href="/contacto" className="btn btn-outline-white">Contactanos →</Link>
+       </section>
     </>
   );
 }

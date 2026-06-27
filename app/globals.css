@@ -147,8 +147,15 @@ footer::before {
 .footer-logo .logo-nombre { font-family: var(--f-logo); font-size: 1rem; font-weight: 400; color: var(--cream); line-height: 1.1; letter-spacing: 0.08em; }
 .footer-logo .logo-estudio { font-family: var(--f-logo-sub); font-size: 0.6rem; font-weight: 400; color: var(--cream); letter-spacing: 0.38em; text-transform: uppercase; }
 
-.footer-tagline { font-size: 0.84rem; color: rgba(250,247,245,0.7); margin-top: 14px; line-height: 1.7; max-width: 280px; font-family: var(--f-logo); font-style: italic; }
-
+.footer-tagline { 
+  font-family: var(--f-body); 
+  font-size: 0.78rem; 
+  color: rgba(250,247,245,0.85); 
+  margin-top: 14px; 
+  line-height: 1.7; 
+  max-width: 280px; 
+  font-weight: 400;
+}
 .footer-col h4 {
   font-family: var(--f-body); font-size: 0.7rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--rose); margin-bottom: 18px; font-weight: 500;
@@ -431,8 +438,15 @@ main { padding-top: var(--nav-h); }
   line-height: 1.1; font-weight: 400; margin-bottom: 14px;
 }
 .cta-banda p {
-  font-size: 1.05rem; line-height: 1.6; opacity: 0.95;
-  max-width: 580px; margin: 0 auto 28px;
+  font-family: var(--f-body);
+  font-size: 0.86rem;
+  color: rgba(250,247,245,0.85);
+  text-decoration: none;
+  max-width: 620px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 .cta-banda .btn {
   background: var(--rose); color: var(--white);
