@@ -109,36 +109,6 @@ export default function AreaJubilaciones() {
             <summary>
               <div className="num">6</div>
               <div className="summary-title">
-                <h4>Jubilación especial Malvinas</h4>
-                <span className="resumen">Ley 23.848 - Veteranos de la Guerra</span>
-              </div>
-              <span className="acordeon-icon">+</span>
-            </summary>
-            <div className="seccion-body">
-              <p>Jubilación anticipada exclusiva para Veteranos de la Guerra de Malvinas. Tramitación con <strong>beneficios especiales y prioritarios</strong>.</p>
-              <p className="busqueda-cliente">¿Sos Veterano de Malvinas? Tenés derechos especiales de jubilación que gestionamos personalmente.</p>
-            </div>
-          </details>
-
-          <details className="seccion-card fade-in">
-            <summary>
-              <div className="num">7</div>
-              <div className="summary-title">
-                <h4>Pensión Malvinas a herederos</h4>
-                <span className="resumen">Pensión honorífica para viuda/viudo e hijos</span>
-              </div>
-              <span className="acordeon-icon">+</span>
-            </summary>
-            <div className="seccion-body">
-              <p>Pensión especial para Veteranos de Malvinas fallecidos. Tramitación para <strong>viuda/viudo e hijos derechohabientes</strong>.</p>
-              <p className="busqueda-cliente">¿Perdiste a un Veterano de Malvinas? Su familia tiene derecho a pensión especial.</p>
-            </div>
-          </details>
-
-          <details className="seccion-card fade-in">
-            <summary>
-              <div className="num">8</div>
-              <div className="summary-title">
                 <h4>Impugnación de resoluciones</h4>
                 <span className="resumen">Reclamo ante negativas de ANSES</span>
               </div>
