@@ -14,9 +14,11 @@ export default function Footer() {
               <span className="logo-estudio">Estudio Jurídico</span>
             </div>
           </div>
-          <p className="footer-tagline">Tu derecho, nuestro compromiso. Asesoramiento jurídico previsional y en salud con enfoque humano.</p>
-        </div>
-
+          <div className="footer-tagline">
+            <p>Cada caso es único. Nuestra estrategia también.</p>
+            <p>Porque detrás de cada expediente hay una persona.</p>
+           </div>
+           </div>
         {/* ÁREAS */}
         <div className="footer-col">
           <h4>Áreas</h4>
