@@ -162,7 +162,7 @@ export default function Contacto() {
                 <div className="dato-icon">📍</div>
                 <div className="dato-content">
                   <h3>Oficina</h3>
-                  <div className="valor">Bolívar 382 · CABA · CP 1066</div>
+                  <div className="valor">Bolívar 382, Piso 6 Oficina 23 · CABA · CP 1066</div>
                   <div className="extra">Atención presencial con turno previo. Atendemos también de manera virtual a todo el país.</div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export default function Contacto() {
             <div className="mapa-direccion-bloque">
               <div className="icon">📍</div>
               <div>
-                <div className="titulo-direccion">Bolívar 382 · CABA · CP 1066</div>
+                <div className="titulo-direccion">Bolívar 382, Piso 6 Oficina 23 · CABA · CP 1066</div>
                 <a href="https://maps.google.com/?q=Bolívar+382+CABA" target="_blank" rel="noopener" className="link-maps">Abrir en Google Maps →</a>
               </div>
             </div>

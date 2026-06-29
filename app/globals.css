@@ -1250,12 +1250,12 @@ details.seccion-card:hover .num {
 .fg textarea,
 .fg select {
   padding: 14px 16px;
-  border: 1px solid var(--gray-line);
+  border: 1.5px solid var(--rose);
   border-radius: 4px;
   font-family: var(--f-body);
   font-size: 0.95rem;
   color: var(--navy);
-  background: var(--rose-soft);
+  background: rgba(200, 132, 106, 0.15);
 }
 
 .fg input::placeholder,
@@ -1294,8 +1294,10 @@ details.seccion-card:hover .num {
 
 .consent-box {
   margin: 24px 0;
-  padding: 16px;
-  background: var(--rose-soft);
+  padding: 16px 20px;
+  background: rgba(200, 132, 106, 0.08);
+  border: 1px solid var(--rose);
+  border-left: 4px solid var(--rose);
   border-radius: 4px;
 }
 
@@ -1368,9 +1370,9 @@ details.seccion-card:hover .num {
 
 .dato-card {
   padding: 20px;
-  border: 1px solid var(--gray-line);
+  border: 2px solid var(--gray-line);
   border-radius: 8px;
-  background: white;
+  background:white;
   display: flex;
   gap: 16px;
   text-decoration: none;
@@ -1486,6 +1488,8 @@ details.seccion-card:hover .num {
   padding: 20px;
   background: var(--mist);
   border-radius: 8px;
+  border: 1px solid var(--rose);
+  border-left: 4px solid var(--rose);
   align-items: flex-start;
 }
 
