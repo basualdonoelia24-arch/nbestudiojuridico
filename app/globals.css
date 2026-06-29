@@ -1182,3 +1182,343 @@ details.seccion-card:hover .num {
   }
 
 }
+/* CONTACTO */
+.contacto-section {
+  max-width: 100%;
+  margin: 0;
+  padding: 60px 0 60px 0;
+  padding-right: 80px;
+}
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 500fr 550px;
+  gap: 50px;
+  max-width: 1400px;
+  margin-left: 50px;
+}
+
+.form-card {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-line);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-card {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-line);
+  border-top: 4px solid var(--rose);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-sub {
+  font-size: 0.9rem;
+  color: var(--gray-text);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.fg {
+  display: flex;
+  flex-direction: column;
+}
+
+.fg label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.fg input,
+.fg textarea,
+.fg select {
+  padding: 14px 16px;
+  border: 1px solid var(--gray-line);
+  border-radius: 4px;
+  font-family: var(--f-body);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--rose-soft);
+}
+
+.fg input::placeholder,
+.fg textarea::placeholder {
+  color: rgba(110, 110, 110, 0.6);
+}
+
+.fg input:focus,
+.fg textarea:focus,
+.fg select:focus {
+  outline: none;
+  border-color: var(--rose);
+  background: white;
+  box-shadow: 0 0 0 2px rgba(200, 132, 106, 0.1);
+}
+.fg textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.fg input:focus,
+.fg textarea:focus,
+.fg select:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 2px rgba(200, 132, 106, 0.1);
+}
+
+.fg .help {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.consent-box {
+  margin: 24px 0;
+  padding: 16px;
+  background: var(--rose-soft);
+  border-radius: 4px;
+}
+
+.consent-label {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.consent-label input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.consent-text a {
+  color: var(--rose);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.required-mark {
+  color: var(--rose);
+  font-weight: bold;
+}
+
+.form-aviso-mini {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  text-align: center;
+  margin: 16px 0;
+}
+
+.btn-enviar {
+  padding: 14px 28px;
+  background: var(--rose);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.05em;
+}
+
+.btn-enviar:hover {
+  background: var(--rose-deep);
+  transform: translateY(-2px);
+}
+
+.form-msg {
+  padding: 12px;
+  background: var(--rose-soft);
+  color: var(--rose-deep);
+  border-left: 3px solid var(--rose);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+.contacto-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dato-card {
+  padding: 20px;
+  border: 1px solid var(--gray-line);
+  border-radius: 8px;
+  background: white;
+  display: flex;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+.dato-card:hover {
+  border-color: var(--rose);
+  box-shadow: 0 4px 12px rgba(200, 132, 106, 0.15);
+  transform: translateY(-2px);
+}
+
+.dato-card.wa-card {
+  background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+  border-color: #4CAF50;
+}
+
+.dato-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+   width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(200, 132, 106, 0.2);
+  border-radius: 50%;
+}
+
+.dato-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--rose);
+}
+
+.dato-content .valor {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.dato-content .extra {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  line-height: 1.5;
+}
+
+.dato-card .link {
+  font-size: 0.85rem;
+  color: var(--rose);
+  font-weight: 600;
+  margin-top: 8px;
+  display: block;
+}
+
+/* MAPA */
+.mapa-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 50px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header .tag-rosa {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.section-header h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+
+.section-header .subtitle {
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.mapa-wrap {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.mapa-iframe {
+  width: 100%;
+  height: 400px;
+  display: block;
+}
+
+.mapa-direccion-bloque {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: var(--mist);
+  border-radius: 8px;
+  align-items: flex-start;
+}
+
+.mapa-direccion-bloque .icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.titulo-direccion {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.link-maps {
+  font-size: 0.85rem;
+  color: var(--rose);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-maps:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  .contacto-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
