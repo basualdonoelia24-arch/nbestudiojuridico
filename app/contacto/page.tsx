@@ -43,7 +43,6 @@ export default function Contacto() {
     setFormData({ nombre: '', apellido: '', email: '', whatsapp: '', area: '', mensaje: '', consentimiento: false });
   }
 };
- 
   return (
     <>
     {/* HERO */}
