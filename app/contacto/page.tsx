@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
@@ -24,18 +25,25 @@ export default function Contacto() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.consentimiento) {
-      setFormMsg('Debes aceptar la Política de Privacidad para continuar.');
-      return;
-    }
+  e.preventDefault();
+  
+  if (!formData.consentimiento) {
+    setFormMsg('Debes aceptar la Política de Privacidad para continuar.');
+    return;
+  }
 
-    // Por ahora, solo mostrar un mensaje
+  const { error } = await supabase
+    .from('contactos')
+    .insert([formData]);
+  
+  if (error) {
+    setFormMsg('Error: ' + error.message);
+  } else {
     setFormMsg('✓ Consulta registrada. Te contactaremos en breve.');
     setFormData({ nombre: '', apellido: '', email: '', whatsapp: '', area: '', mensaje: '', consentimiento: false });
-  };
-
+  }
+};
+ 
   return (
     <>
     {/* HERO */}
