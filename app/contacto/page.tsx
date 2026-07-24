@@ -39,6 +39,17 @@ export default function Contacto() {
   if (error) {
     setFormMsg('Error: ' + error.message);
   } else {
+    // Llamar webhook de n8n
+    try {
+      await fetch('https://nbestudiojuridico.app.n8n.cloud/webhook-test/24b67f59-8654-4ffe-941c-65ab162765d9', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (e) {
+      console.log('Webhook enviado');
+    }
+
     setFormMsg('✓ Consulta registrada. Te contactaremos en breve.');
     setFormData({ nombre: '', apellido: '', email: '', whatsapp: '', area: '', mensaje: '', consentimiento: false });
   }
