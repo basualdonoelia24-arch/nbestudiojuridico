@@ -533,10 +533,10 @@ export default function ReservaJubilaciones() {
                 <div className="fg"><label>WhatsApp *</label><input type="tel" placeholder="+54 11 xxxxxxxx" required /></div>
               </div>
               <div className="form-row">
-                <div className="fg"><label>Provincia *</label><select required><option value="" disabled selected>Seleccioná</option><option>Buenos Aires</option><option>CABA</option><option>Córdoba</option></select></div>
+                <div className="fg"><label>Provincia *</label><select required defaultValue=""><option value="" disabled>Seleccioná</option><option>Buenos Aires</option><option>CABA</option><option>Córdoba</option></select></div>
                 <div className="fg"><label>Localidad *</label><input type="text" placeholder="Tu ciudad" required /></div>
               </div>
-              <div className="fg"><label>¿Tenés Clave de ANSES y AFIP activas? *</label><select required><option value="" disabled selected>Seleccioná</option><option>Sí, tengo ambas activas</option><option>No tengo ninguna</option></select></div>
+              <div className="fg"><label>¿Tenés Clave de ANSES y AFIP activas? *</label><select required defaultValue=""><option value="" disabled>Seleccioná</option><option>Sí, tengo ambas activas</option><option>No tengo ninguna</option></select></div>
               <div className="form-row">
                 <div className="fg"><label>Fecha del turno *</label><input type="date" id="fechaTurno" required /></div>
                 <div className="fg"><label>Horario *</label><select id="horaTurno" required disabled={horariosDisabled}><option value="" disabled>Primero elegí una fecha</option></select></div>
