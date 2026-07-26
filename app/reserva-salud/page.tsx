@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function ReservaReajustes() {
+export default function ReservaSalud() {
   const [cuponMsg, setCuponMsg] = useState('');
   const [cuponClass, setCuponClass] = useState('');
   const [horariosDisabled, setHorariosDisabled] = useState(true);
@@ -153,7 +153,7 @@ export default function ReservaReajustes() {
         .tag { display:inline-block; font-family:var(--f-body); font-size:0.63rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; border:1px solid currentColor; padding:4px 14px; border-radius:999px; }
 
         .page-hero { padding-top:76px; padding-bottom:80px; padding-inline:5%; background:var(--cream); position:relative; overflow:hidden; }
-        .page-hero::before { content:'REAJUSTE DE HABER'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--f-display); font-size:24vw; color:rgba(27,58,92,0.025); letter-spacing:0.08em; pointer-events:none; user-select:none; white-space:nowrap; z-index:0; }
+        .page-hero::before { content:'AMPARO'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--f-display); font-size:24vw; color:rgba(27,58,92,0.025); letter-spacing:0.08em; pointer-events:none; user-select:none; white-space:nowrap; z-index:0; }
         .page-hero-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; display:grid; grid-template-columns:0.85fr 1.2fr; gap:60px; align-items:center; }
         .breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:24px; font-size:0.7rem; color:#6a7a8a; }
         .breadcrumb a { color:var(--rose); }
@@ -162,7 +162,6 @@ export default function ReservaReajustes() {
         .page-hero h1 { font-family:var(--f-display); font-size:clamp(2.8rem,5.8vw,5.8rem); line-height:0.92; color:var(--navy); margin-bottom:16px; }
         .page-hero h1 em { font-family:var(--f-serif); font-style:italic; color:var(--rose); }
         .page-hero-sub { font-family:var(--f-serif); font-style:italic; font-size:clamp(1.1rem,1.6vw,1.4rem); color:var(--rose); margin-bottom:18px; }
-        .hero-etiqueta { margin-top:12px; margin-bottom:18px; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rose); opacity:0.85; font-weight:500; }
         .page-hero p.intro { font-size:1.02rem; line-height:1.75; color:#4a5a6a; max-width:54ch; }
         .hero-foto { position:relative; width:100%; max-width:380px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; box-shadow:0 30px 70px rgba(27,58,92,0.22); border:5px solid var(--white); outline:1.5px solid var(--rose); outline-offset:7px; }
         .hero-foto img { width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; }
@@ -196,19 +195,14 @@ export default function ReservaReajustes() {
         .aviso-inner { max-width:780px; margin:0 auto; }
         .tag-imp { display:inline-block; font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--rose); padding:6px 18px; border:1.5px solid var(--rose); border-radius:999px; margin-bottom:20px; }
         .aviso-inner h3 { font-family:var(--f-serif); font-size:clamp(1.3rem,2.2vw,1.8rem); line-height:1.4; margin-bottom:24px; }
-        .claves-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:24px; }
-        .clave-card { background:rgba(200,132,106,0.1); border:1px solid rgba(200,132,106,0.3); border-left:4px solid var(--rose); padding:24px; border-radius:3px; text-align:left; display:flex; align-items:center; gap:16px; }
-        .clave-icon { width:48px; height:48px; flex-shrink:0; background:var(--rose); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; }
-        .clave-label { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--rose); font-weight:600; margin-bottom:4px; }
-        .clave-nombre { font-family:var(--f-serif); font-size:1.15rem; color:var(--cream); }
-        .clave-desc { font-size:0.82rem; color:rgba(250,247,245,0.75); line-height:1.5; }
 
-        .haber-inicial-bloque { margin-top:24px; background:rgba(200,132,106,0.12); border:1px solid rgba(200,132,106,0.35); border-left:4px solid var(--rose); padding:22px 26px; border-radius:var(--radius); display:flex; align-items:flex-start; gap:18px; text-align:left; transition:all 0.3s ease; }
-        .haber-inicial-bloque:hover { background:rgba(200,132,106,0.16); border-left-color:var(--rose-deep); }
-        .haber-inicial-icon { width:48px; height:48px; flex-shrink:0; background:var(--rose); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; box-shadow:0 4px 12px rgba(200,132,106,0.30); }
-        .haber-inicial-titulo { font-family:var(--f-serif); font-size:1.2rem; color:var(--cream); margin-bottom:8px; line-height:1.3; }
-        .haber-inicial-desc { font-size:0.92rem; opacity:0.85; line-height:1.7; color:var(--cream); }
-        .haber-inicial-desc strong { color:var(--rose); font-weight:600; }
+        .docs-lista { display:flex; flex-direction:column; gap:14px; margin-top:8px; }
+        .doc-item { background:rgba(200,132,106,0.08); border:1px solid rgba(200,132,106,0.25); border-left:3px solid var(--rose); padding:18px 22px; border-radius:var(--radius); display:flex; align-items:flex-start; gap:18px; transition:all 0.3s ease; }
+        .doc-item:hover { background:rgba(200,132,106,0.12); border-left-color:var(--rose-deep); }
+        .doc-num { width:34px; height:34px; flex-shrink:0; background:var(--rose); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--f-serif); font-size:1.05rem; font-weight:500; box-shadow:0 4px 10px rgba(200,132,106,0.30); }
+        .doc-info .doc-titulo { font-family:var(--f-serif); font-size:1.05rem; color:var(--cream); margin-bottom:4px; line-height:1.3; }
+        .doc-info .doc-desc { font-size:0.85rem; opacity:0.78; line-height:1.6; color:var(--cream); }
+        .doc-info .doc-desc strong { color:var(--rose); font-weight:600; }
 
         .como-accedes { background:var(--navy); color:var(--cream); padding:clamp(64px,7vw,100px) 5%; position:relative; overflow:hidden; border-top:3px solid var(--rose); }
         .como-accedes::before { content:'PROCESO'; position:absolute; top:50%; right:-8%; transform:translateY(-50%); font-family:var(--f-display); font-size:24vw; color:rgba(200,132,106,0.04); letter-spacing:0.08em; pointer-events:none; user-select:none; line-height:1; }
@@ -288,16 +282,7 @@ export default function ReservaReajustes() {
         .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
         .fg select { color:var(--ink); cursor:pointer; }
         .fg select option { background:var(--white); color:var(--ink); }
-        .fg textarea { resize:vertical; min-height:110px; line-height:1.5; }
-
-        .radio-group { display:flex; flex-direction:column; gap:10px; margin-top:6px; }
-        .fg .radio-group .radio-label { display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--white); border:1px solid rgba(27,58,92,0.15); border-radius:var(--radius); cursor:pointer; transition:all 0.2s ease; }
-        .fg .radio-group .radio-label span { color:var(--white); font-weight:400; text-transform:none; letter-spacing:0; font-size:0.92rem; }
-        .fg .radio-group .radio-label input[type="radio"] { width:18px; height:18px; accent-color:var(--rose); cursor:pointer; }
-        .fg .radio-group .radio-label:hover { background:var(--navy); border-color:var(--navy); }
-        .fg .radio-group .radio-label:has(input:checked) { background:var(--navy); border-color:var(--rose); box-shadow:0 0 0 1px var(--rose); }
-        .fg .radio-group .radio-label:has(input:checked) span { color:var(--white); }
-
+        .fg textarea { resize:vertical; min-height:150px; line-height:1.5; }
         .cupon-row { display:flex; gap:12px; align-items:flex-end; }
         .cupon-row .fg { flex:1; }
         .cupon-row button { padding:14px 28px; background:var(--rose); color:var(--white); border:none; border-radius:var(--radius); font-weight:600; font-size:0.85rem; cursor:pointer; transition:background 0.3s; }
@@ -307,8 +292,6 @@ export default function ReservaReajustes() {
         .cupon-msg.ok { background:rgba(76,175,80,0.1); color:#4caf50; border:1px solid #4caf50; }
         .cupon-msg.error { background:rgba(244,67,54,0.1); color:#f44336; border:1px solid #f44336; }
         .form-aviso { font-size:0.85rem; color:#6a7a8a; line-height:1.5; padding:12px 0; border-top:1px solid var(--gray-line); }
-        .nro-operacion { background:rgba(200,132,106,0.18); border:1px solid rgba(200,132,106,0.4); border-left:5px solid var(--rose); border-radius:var(--radius); padding:22px; }
-        .nro-operacion label { color:var(--rose) !important; font-size:0.85rem !important; }
         .btn-confirmar { padding:18px 32px; background:var(--rose); color:var(--white); font-family:var(--f-body); font-size:0.9rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border-radius:var(--radius); border:none; cursor:pointer; transition:background 0.3s; width:100%; }
         .btn-confirmar:hover { background:var(--rose-hover); }
 
@@ -317,7 +300,6 @@ export default function ReservaReajustes() {
           .paso-inner { grid-template-columns:1fr; }
           .paso2-inner { grid-template-columns:1fr; }
           .qh-grid { grid-template-columns:1fr; }
-          .claves-grid { grid-template-columns:1fr; }
           .form-row { grid-template-columns:1fr; }
           .ca-pasos { grid-template-columns:1fr 1fr; gap:18px; }
           .ca-paso:nth-child(2)::after { display:none; }
@@ -325,11 +307,10 @@ export default function ReservaReajustes() {
         @media(max-width:600px) {
           .ca-pasos { grid-template-columns:1fr; gap:18px; }
           .ca-paso::after { display:none; }
-          .hero-etiqueta { font-size:0.7rem; letter-spacing:0.12em; }
-          .haber-inicial-bloque { padding:18px 20px; gap:14px; flex-direction:column; align-items:flex-start; }
-          .haber-inicial-icon { width:42px; height:42px; font-size:1.2rem; }
-          .haber-inicial-titulo { font-size:1.05rem; }
-          .haber-inicial-desc { font-size:0.85rem; }
+          .doc-item { padding:14px 16px; gap:12px; }
+          .doc-num { width:28px; height:28px; font-size:0.9rem; }
+          .doc-info .doc-titulo { font-size:0.95rem; }
+          .doc-info .doc-desc { font-size:0.78rem; }
         }
       `}</style>
 
@@ -347,15 +328,14 @@ export default function ReservaReajustes() {
             <div className="breadcrumb">
               <Link href="/">Inicio</Link>
               <span className="sep">/</span>
-              <Link href="/area-reajustes">Reajustes de Haberes</Link>
+              <Link href="/area-salud">Salud</Link>
               <span className="sep">/</span>
               <span>Reservar turno</span>
             </div>
-            <span className="area-tag">⚖ REAJUSTES DE HABERES</span>
+            <span className="area-tag">⚖ SALUD · OBRAS SOCIALES Y PREPAGAS</span>
             <h1>RESERVA <em>de turno</em></h1>
-            <p className="page-hero-sub">Si tu haber está mal calculado, te ayudamos a recuperar lo que te corresponde.</p>
-            <p className="hero-etiqueta">· Jubilación · Pensión · Ambos casos</p>
-            <p className="intro"><strong>Asesoramiento personalizado</strong> con la Dra. Noelia Basualdo, especialista en Derecho de Seguridad Social. Una entrevista virtual donde analizamos tu situación, revisamos tu haber actual y evaluamos si tiene base un reclamo de reajuste. Para esto, antes de la entrevista, necesitamos contar con información que vas a tener que proveer, así podemos realizar el análisis de tu cálculo.</p>
+            <p className="page-hero-sub">El acceso a la salud es un derecho. Te acompañamos para defenderlo.</p>
+            <p className="intro"><strong>Asesoramiento personalizado</strong> con la Dra. Noelia Basualdo, especialista en Derecho de Seguridad Social. Una entrevista virtual donde analizamos tu caso, revisamos la documentación que aportes y diseñamos la mejor estrategia para defender tus derechos frente a tu obra social o prepaga.</p>
           </div>
         </div>
       </section>
@@ -371,20 +351,20 @@ export default function ReservaReajustes() {
             <div className="qh-card">
               <div className="qh-num">01</div>
               <div className="qh-icon">📋</div>
-              <h3>Análisis previo de tu situación</h3>
-              <p>Recibimos tu información antes de la entrevista: cuándo te jubilaste, qué haber percibís, los datos del haber inicial y los aportes históricos. Esto nos permite tener todo listo el día de la consulta.</p>
+              <h3>Análisis del caso</h3>
+              <p>Revisión de tu situación particular: las negativas o aumentos recibidos, antecedentes médicos cuando aplique, y la relación con tu obra social o prepaga.</p>
             </div>
             <div className="qh-card">
               <div className="qh-num">02</div>
-              <div className="qh-icon">🔢</div>
-              <h3>Realizamos el cálculo de tu haber</h3>
-              <p>Con la información que aportaste, hacemos el cálculo previo: verificamos si tu haber está bien liquidado, si hay errores administrativos, si te aplicaron correctamente la movilidad (y en cuánto mejora tu haber la aplicación de índices por jurisprudencia), si te descuentan Ganancias y si hay topes que correspondan reclamar.</p>
+              <div className="qh-icon">⚖️</div>
+              <h3>Evaluación de viabilidad</h3>
+              <p>Te decimos con honestidad si hay base para un reclamo, qué probabilidades tiene y cuál es el camino más adecuado (amparo, mediación, reclamo administrativo).</p>
             </div>
             <div className="qh-card">
               <div className="qh-num">03</div>
               <div className="qh-icon">🎯</div>
-              <h3>Evaluación de viabilidad</h3>
-              <p>Con el cálculo en mano, te decimos con honestidad si conviene iniciar un juicio de reajuste, qué tipo de reclamo es viable, qué probabilidades tiene y los pasos a seguir.</p>
+              <h3>Estrategia y próximos pasos</h3>
+              <p>Si conviene reclamar, te explicamos cómo se hace, cuáles son los tiempos y qué documentación adicional necesitamos para iniciar el reclamo.</p>
             </div>
           </div>
         </div>
@@ -394,47 +374,61 @@ export default function ReservaReajustes() {
       <section className="oportunidad">
         <div className="op-inner">
           <h2>NO TE PIERDAS<br/>ESTA <em>oportunidad</em></h2>
-          <p>Agendá tu entrevista por videollamada y comenzá hoy a reclamar tu haber justo.</p>
-          <span className="op-video">📹 Entrevista por videollamada · 30 minutos</span>
+          <p>Agendá tu entrevista por videollamada y comenzá hoy a defender tus derechos en salud.</p>
+          <span className="op-video">📹 Entrevista por videollamada · 50 minutos</span>
         </div>
       </section>
 
-      {/* AVISO IMPORTANTE */}
+      {/* QUÉ TRAER A LA CONSULTA */}
       <section className="aviso-bloque">
         <div className="aviso-inner">
           <span className="tag-imp">⚠ Importante</span>
-          <h3>Es muy importante que cuentes con la documentación necesaria</h3>
-          <p style={{fontSize:'0.95rem', opacity:0.78, maxWidth:'60ch', margin:'0 auto 8px', lineHeight:1.7}}>
-            Para que la consulta sea efectiva, necesitamos acceder a tu haber actual y a tus aportes históricos. Las claves nos permiten ver tu situación previsional completa para detectar si hay errores en la liquidación y en cuánto mejora tu haber con el juicio que se iniciaría.
+          <h3>¿Qué traer a la consulta?</h3>
+          <p style={{fontSize:'0.95rem', opacity:0.78, maxWidth:'60ch', margin:'0 auto 24px', lineHeight:1.7}}>
+            Para que podamos analizar tu caso de manera completa, conviene tener a mano los siguientes documentos:
           </p>
-          <div className="claves-grid">
-            <div className="clave-card">
-              <div className="clave-icon">🔐</div>
-              <div>
-                <div className="clave-label">Necesitás tu</div>
-                <div className="clave-nombre">Clave de ANSES</div>
-                <div className="clave-desc">Para acceder a tu historia laboral, aportes, haber actual y el expediente de la jubilación o pensión</div>
+
+          <div className="docs-lista" style={{maxWidth:'780px', margin:'0 auto', textAlign:'left'}}>
+            <div className="doc-item">
+              <div className="doc-num">1</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Credencial de obra social o prepaga</div>
+                <div className="doc-desc">Foto o copia del frente. <strong>En caso de tener adherentes</strong>, la copia de todas las credenciales o captura de pantalla de las credenciales virtuales.</div>
               </div>
             </div>
-            <div className="clave-card">
-              <div className="clave-icon">🔐</div>
-              <div>
-                <div className="clave-label">Necesitás tu</div>
-                <div className="clave-nombre">Clave de AFIP</div>
-                <div className="clave-desc">Para validar tu situación fiscal y aportes</div>
+            <div className="doc-item">
+              <div className="doc-num">2</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Última factura o recibo de pago</div>
+                <div className="doc-desc">Para casos de aumento de cuota se va a requerir <strong>las facturas desde noviembre de 2023 a la fecha</strong>.</div>
+              </div>
+            </div>
+            <div className="doc-item">
+              <div className="doc-num">3</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Prescripción médica</div>
+                <div className="doc-desc">En casos de medicamentos o tratamientos.</div>
+              </div>
+            </div>
+            <div className="doc-item">
+              <div className="doc-num">4</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Carta o respuesta de rechazo</div>
+                <div className="doc-desc">De la obra social/prepaga, si ya hubo un reclamo previo.</div>
+              </div>
+            </div>
+            <div className="doc-item">
+              <div className="doc-num">5</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Documentación médica relevante</div>
+                <div className="doc-desc">Estudios, historia clínica, informes.</div>
               </div>
             </div>
           </div>
 
-          <div className="haber-inicial-bloque">
-            <div className="haber-inicial-icon">📄</div>
-            <div>
-              <div className="haber-inicial-titulo">Detalle del cálculo del haber inicial</div>
-              <div className="haber-inicial-desc">
-                Es necesario contar con el <strong>Detalle del cálculo del haber inicial</strong> de tu jubilación. <strong>Si tu expediente no está digitalizado, vas a tener que solicitarlo en ANSES.</strong> Sin este documento, no es posible analizar correctamente si hay errores en el cálculo original de tu haber.
-              </div>
-            </div>
-          </div>
+          <p style={{fontSize:'0.88rem', opacity:0.65, maxWidth:'60ch', margin:'24px auto 0', fontStyle:'italic', textAlign:'center', lineHeight:1.6}}>
+            No es indispensable tener TODO para la consulta. Si te falta algo, podemos analizarlo y pedirlo después.
+          </p>
         </div>
       </section>
 
@@ -469,7 +463,7 @@ export default function ReservaReajustes() {
               <div className="ca-paso-num">4</div>
               <div className="ca-paso-icon">📹</div>
               <h4>Tenés tu entrevista</h4>
-              <p>Te conectás por videollamada el día y hora elegidos. Duración: 30 minutos.</p>
+              <p>Te conectás por videollamada el día y hora elegidos. Duración: 50 minutos.</p>
             </div>
           </div>
         </div>
@@ -502,22 +496,22 @@ export default function ReservaReajustes() {
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
-                  <strong>Calcular tu haber</strong>
-                  Verificamos si está bien liquidado, si aplicaron correctamente la movilidad y en cuánto mejoraría con los índices que reconoce la jurisprudencia.
+                  <strong>Revisar tu documentación</strong>
+                  Analizamos las negativas, facturas, prescripciones e informes médicos que aportes para entender exactamente en qué situación estás.
                 </div>
               </div>
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
-                  <strong>Detectar los errores del cálculo inicial</strong>
-                  Revisamos el detalle del haber inicial, los aportes históricos, los topes y los descuentos de Ganancias.
+                  <strong>Decirte si tu reclamo tiene base</strong>
+                  Con honestidad, sin generar expectativas falsas: si hay fundamento para reclamar y si tu caso requiere una medida urgente.
                 </div>
               </div>
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
-                  <strong>Decirte si conviene reclamar</strong>
-                  Con el cálculo en mano, si el juicio de reajuste tiene sentido en tu caso y qué diferencia real podés esperar.
+                  <strong>Explicarte los pasos concretos</strong>
+                  Qué vía corresponde, qué documentación falta y cuáles son los tiempos reales del reclamo.
                 </div>
               </div>
             </div>
@@ -584,33 +578,20 @@ export default function ReservaReajustes() {
                 <div className="fg"><label>Localidad *</label><input type="text" placeholder="Tu ciudad" required /></div>
               </div>
 
-              <div className="fg">
-                <label>¿Qué tipo de reajuste necesitás? *</label>
-                <div className="radio-group">
-                  <label className="radio-label">
-                    <input type="radio" name="tipo_reajuste" value="jubilacion" required />
-                    <span>Reajuste de jubilación</span>
-                  </label>
-                  <label className="radio-label">
-                    <input type="radio" name="tipo_reajuste" value="pension" required />
-                    <span>Reajuste de pensión</span>
-                  </label>
-                  <label className="radio-label">
-                    <input type="radio" name="tipo_reajuste" value="ambos" required />
-                    <span>Ambos casos</span>
-                  </label>
+              <div className="form-row">
+                <div className="fg">
+                  <label>¿Cuál es tu obra social o prepaga? *</label>
+                  <input type="text" placeholder="Ej: OSDE, Galeno, Swiss Medical, IOMA..." required />
                 </div>
-              </div>
-
-              <div className="fg">
-                <label>¿Tenés Clave de ANSES y AFIP activas? *</label>
-                <select required defaultValue="">
-                  <option value="" disabled>Seleccioná</option>
-                  <option>Sí, tengo ambas activas</option>
-                  <option>Solo tengo una de las dos</option>
-                  <option>No tengo ninguna activa</option>
-                  <option>No estoy seguro/a</option>
-                </select>
+                <div className="fg">
+                  <label>¿Tu reclamo es urgente? *</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>Seleccioná</option>
+                    <option>Sí, hay tratamiento en curso o por iniciar</option>
+                    <option>Sí, situación delicada pero no inmediata</option>
+                    <option>No, es un reclamo general</option>
+                  </select>
+                </div>
               </div>
 
               <div className="form-row">
@@ -619,8 +600,11 @@ export default function ReservaReajustes() {
               </div>
 
               <div className="fg">
-                <label>Contanos brevemente tu situación previsional *</label>
-                <textarea placeholder="Ej: Soy jubilado desde 2020 y creo que mi haber está mal liquidado. Cobro $XXX y otros con la misma actividad cobran más. Quiero saber si tengo posibilidad de reclamar..." required></textarea>
+                <label>Contanos tu caso *</label>
+                <textarea
+                  required
+                  placeholder={"Ej: Mi obra social/prepaga rechaza la cobertura de un medicamento que necesito (o aumentó la cuota desproporcionadamente, o me dijeron que tengo que pasarme a PAMI...). Quiero saber qué puedo hacer.\n\nPara conocer bien tu situación, ayudanos a entender también:\n▸ ¿Estás afiliado/a solo/a, con familiares a cargo, o estás a cargo de un familiar?\n▸ ¿Desde cuándo estás afiliado/a a esa obra social o prepaga?\n▸ ¿Cuántas personas están afectadas por este reclamo?"}
+                ></textarea>
               </div>
 
               <div className="cupon-row">
@@ -640,13 +624,7 @@ export default function ReservaReajustes() {
         </div>
       </section>
 
-      <a
-        href="https://wa.me/5491178200546"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Escribinos por WhatsApp"
-        style={{position:'fixed', bottom:'24px', right:'24px', width:'60px', height:'60px', background:'#25D366', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 16px rgba(200,132,106,0.4)', zIndex:90}}
-      >
+      <a href="https://wa.me/5491178200546" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp" style={{position:'fixed', bottom:'24px', right:'24px', width:'60px', height:'60px', background:'#25D366', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 16px rgba(37,211,102,0.4)', zIndex:90}}>
         <svg width="32" height="32" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.988 2.896 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
