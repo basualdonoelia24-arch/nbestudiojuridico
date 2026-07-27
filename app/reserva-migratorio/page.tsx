@@ -64,7 +64,6 @@ export default function ReservaMigratorio() {
 
         if (!this.value) {
           selectHora.innerHTML = '<option value="" disabled selected>Primero elegí una fecha</option>';
-          setHorariosDisabled(true);
           return;
         }
 
@@ -76,14 +75,12 @@ export default function ReservaMigratorio() {
           alert('Atendemos de lunes a viernes. Por favor elegí un día hábil.');
           this.value = '';
           selectHora.innerHTML = '<option value="" disabled selected>Primero elegí una fecha</option>';
-          setHorariosDisabled(true);
           return;
         }
 
         const horario = HORARIOS_BASE[dia];
         if (!horario) {
           selectHora.innerHTML = '<option value="" disabled selected>Sin atención este día</option>';
-          setHorariosDisabled(true);
           return;
         }
 
@@ -101,8 +98,6 @@ export default function ReservaMigratorio() {
           opt.textContent = s;
           selectHora.appendChild(opt);
         });
-
-        setHorariosDisabled(false);
       });
     }
   }, []);
@@ -113,7 +108,7 @@ export default function ReservaMigratorio() {
     const cuponesValidos: Record<string, string> = {
       'NB100': '100% de descuento — Consulta bonificada',
       'NB50': '50% de descuento aplicado',
-      'MIGRA25': '25% de descuento aplicado'
+      'JUBILA25': '25% de descuento aplicado'
     };
     setCuponMsg('');
     setCuponClass('');
@@ -129,11 +124,10 @@ export default function ReservaMigratorio() {
 
   const handleTurno = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('¡Entrevista reservada! Recibirás un email con todos los datos: el link de la videollamada o la dirección del estudio, según la modalidad que elegiste.');
+    alert('¡Entrevista reservada! Recibirás un email con todos los datos y el link de la videollamada.');
     (e.target as HTMLFormElement).reset();
     setCuponMsg('');
     setCuponClass('');
-    setHorariosDisabled(true);
   };
 
   return (
@@ -150,9 +144,6 @@ export default function ReservaMigratorio() {
           --mist:        #f0ebe6;
           --ink:         #0e1f33;
           --white:       #ffffff;
-          --gray-line:   rgba(27,58,92,0.12);
-          --radius:      4px;
-          --t:           0.3s ease;
           --f-display: 'Bebas Neue', sans-serif;
           --f-serif:   'DM Serif Display', serif;
           --f-body:    'DM Sans', sans-serif;
@@ -171,8 +162,8 @@ export default function ReservaMigratorio() {
         .page-hero h1 { font-family:var(--f-display); font-size:clamp(2.8rem,5.8vw,5.8rem); line-height:0.92; color:var(--navy); margin-bottom:16px; }
         .page-hero h1 em { font-family:var(--f-serif); font-style:italic; color:var(--rose); }
         .page-hero-sub { font-family:var(--f-serif); font-style:italic; font-size:clamp(1.1rem,1.6vw,1.4rem); color:var(--rose); margin-bottom:18px; }
+        .hero-etiqueta { margin-top:12px; margin-bottom:18px; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rose); opacity:0.85; font-weight:500; }
         .page-hero p.intro { font-size:1.02rem; line-height:1.75; color:#4a5a6a; max-width:54ch; }
-        .hero-etiqueta { margin-top:14px; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rose); opacity:0.85; font-weight:500; }
         .hero-foto { position:relative; width:100%; max-width:380px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; box-shadow:0 30px 70px rgba(27,58,92,0.22); border:5px solid var(--white); outline:1.5px solid var(--rose); outline-offset:7px; }
         .hero-foto img { width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; }
         .hero-foto-wrap { position:relative; padding:18px; }
@@ -287,6 +278,7 @@ export default function ReservaMigratorio() {
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
         .fg { display:flex; flex-direction:column; gap:7px; }
         .fg label { font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--white); font-weight:600; }
+        .form-row .fg label { flex:1; }
         .fg input, .fg textarea, .fg select { background:var(--white); border:2px solid transparent; color:var(--ink); border-radius:var(--radius); padding:14px 16px; font-family:var(--f-body); font-size:1rem; outline:none; transition:border-color var(--t), box-shadow var(--t); }
         .fg input::placeholder, .fg textarea::placeholder { color:#8a99a8; opacity:1; }
         .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
@@ -294,12 +286,14 @@ export default function ReservaMigratorio() {
         .fg select option { background:var(--white); color:var(--ink); }
         .fg textarea { resize:vertical; min-height:150px; line-height:1.5; }
 
-        .radio-group { display:flex; flex-direction:column; gap:10px; margin-top:2px; }
-        .radio-label { display:flex; align-items:flex-start; gap:12px; padding:14px 18px; background:var(--white); border:2px solid transparent; border-radius:var(--radius); cursor:pointer; font-size:0.95rem; color:var(--ink); transition:border-color var(--t), box-shadow var(--t); }
-        .radio-label:hover { border-color:rgba(200,132,106,0.5); }
-        .radio-label input[type="radio"] { width:18px; height:18px; margin-top:3px; accent-color:var(--rose); cursor:pointer; flex-shrink:0; }
-        .radio-label:has(input:checked) { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
-        .radio-label small { display:block; font-size:0.8rem; color:#6a7a8a; margin-top:3px; line-height:1.5; }
+        .radio-group { display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+        .fg .radio-group .radio-label { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; background:var(--white); border:1px solid rgba(27,58,92,0.15); border-radius:var(--radius); cursor:pointer; transition:all 0.2s ease; }
+        .fg .radio-group .radio-label span { color:var(--white); font-weight:400; text-transform:none; letter-spacing:0; font-size:0.92rem; }
+        .fg .radio-group .radio-label small { display:block; font-size:0.78rem; opacity:0.65; margin-top:2px; }
+        .fg .radio-group .radio-label input[type="radio"] { width:18px; height:18px; margin-top:3px; accent-color:var(--rose); cursor:pointer; flex-shrink:0; }
+        .fg .radio-group .radio-label:hover { background:var(--navy); border-color:var(--navy); }
+        .fg .radio-group .radio-label:has(input:checked) { background:var(--navy); border-color:var(--rose); box-shadow:0 0 0 1px var(--rose); }
+        .fg .radio-group .radio-label:has(input:checked) span { color:var(--white); }
 
         .cupon-row { display:flex; gap:12px; align-items:flex-end; }
         .cupon-row .fg { flex:1; }
@@ -325,11 +319,11 @@ export default function ReservaMigratorio() {
         @media(max-width:600px) {
           .ca-pasos { grid-template-columns:1fr; gap:18px; }
           .ca-paso::after { display:none; }
+          .hero-etiqueta { font-size:0.7rem; letter-spacing:0.12em; }
           .doc-item { padding:14px 16px; gap:12px; }
           .doc-num { width:28px; height:28px; font-size:0.9rem; }
           .doc-info .doc-titulo { font-size:0.95rem; }
           .doc-info .doc-desc { font-size:0.78rem; }
-          .hero-etiqueta { font-size:0.7rem; letter-spacing:0.12em; }
         }
       `}</style>
 
@@ -354,8 +348,8 @@ export default function ReservaMigratorio() {
             <span className="area-tag">⚖ DERECHO MIGRATORIO</span>
             <h1>RESERVA <em>de turno</em></h1>
             <p className="page-hero-sub">Regularizar tu situación migratoria es el primer paso para ejercer todos tus derechos.</p>
-            <p className="intro"><strong>Asesoramiento personalizado</strong> con la Dra. Noelia Basualdo. Una entrevista —<strong>presencial en el estudio o por videollamada</strong>, como te quede mejor— donde revisamos tu situación migratoria, la documentación con la que contás y definimos el camino más conveniente para tu radicación, tu ciudadanía o la regularización de tu permanencia en el país.</p>
             <p className="hero-etiqueta">· Radicación · Ciudadanía · Regularización</p>
+            <p className="intro"><strong>Asesoramiento personalizado</strong> con la Dra. Noelia Basualdo. Una entrevista —<strong>presencial en el estudio o por videollamada</strong>, como te quede mejor— donde revisamos tu situación migratoria, la documentación con la que contás y definimos el camino más conveniente para tu radicación, tu ciudadanía o la regularización de tu permanencia en el país.</p>
           </div>
         </div>
       </section>
@@ -534,7 +528,7 @@ export default function ReservaMigratorio() {
             <div className="paso-numero-grande">02</div>
             <span className="paso-label">Segundo paso</span>
             <h2>COMPLETÁ EL <em>formulario</em></h2>
-            <p>Ahora para finalizar, completá el formulario. <strong>Es indispensable</strong> seleccionar la modalidad, la fecha y la hora para tu entrevista.</p>
+            <p>Ahora para finalizar, completá el formulario. <strong>Es indispensable</strong> seleccionar la fecha y la hora para tu entrevista.</p>
             <div className="mail-aviso">
               <div className="mail-titulo">📧 ¿Qué pasa después?</div>
               <p>Vas a recibir un mail con todos los datos de tu entrevista, <strong>incluso para que lo puedas agendar</strong> en tu calendario.</p>
@@ -628,15 +622,13 @@ export default function ReservaMigratorio() {
                 <div className="radio-group">
                   <label className="radio-label">
                     <input type="radio" name="modalidad" value="virtual" required />
-                    <span>
-                      Por videollamada
+                    <span>Por videollamada
                       <small>Te enviamos el link por email. Desde donde estés, con celular o computadora.</small>
                     </span>
                   </label>
                   <label className="radio-label">
                     <input type="radio" name="modalidad" value="presencial" required />
-                    <span>
-                      Presencial en el estudio
+                    <span>Presencial en el estudio
                       <small>Bolívar 382, CABA. Ideal si traés documentación original para revisar.</small>
                     </span>
                   </label>
@@ -662,7 +654,7 @@ export default function ReservaMigratorio() {
               </div>
               {cuponMsg && <div className={`cupon-msg ${cuponClass}`}>{cuponMsg}</div>}
 
-              <p className="form-aviso">🔒 Tu información es confidencial. Recibirás la confirmación de tu entrevista en tu email dentro de las 24 hs hábiles, con el link de la videollamada o la dirección del estudio según la modalidad que elijas.</p>
+              <p className="form-aviso">🔒 Tu información es confidencial. Recibirás la confirmación de tu entrevista y el link de la videollamada en tu email dentro de las 24 hs hábiles.</p>
               <p className="form-aviso" style={{fontSize:'0.68rem', opacity:0.4}}>
                 Este sitio está protegido por reCAPTCHA y se aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Términos del servicio</a> de Google.
               </p>
