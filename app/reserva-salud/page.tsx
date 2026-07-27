@@ -322,7 +322,7 @@ export default function ReservaSalud() {
             <span className="hero-foto-deco"></span>
             <span className="hero-foto-deco-bottom"></span>
             <div className="hero-foto">
-              <img src="https://via.placeholder.com/380" alt="Dra. Noelia Basualdo" />
+              <img src="/noelia.jpg" alt="Dra. Noelia Basualdo" />
             </div>
           </div>
           <div className="page-hero-content">
