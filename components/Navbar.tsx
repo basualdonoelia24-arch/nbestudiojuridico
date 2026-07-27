@@ -8,12 +8,14 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [otrasOpen, setOtrasOpen] = useState(false);
   const dropdownRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
-  setMobileOpen(false);
-  setDropdownOpen(false);
-}, [pathname]);
+    setMobileOpen(false);
+    setDropdownOpen(false);
+    setOtrasOpen(false);
+  }, [pathname]);
 
   return (
     <nav className="main-nav">
@@ -36,7 +38,7 @@ export default function Navbar() {
             <button 
               className="dropdown-toggle" 
               aria-expanded={dropdownOpen}
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={() => { setDropdownOpen(!dropdownOpen); setOtrasOpen(false); }}
             >
               Previsional <span className="chev">▼</span>
             </button>
@@ -50,6 +52,18 @@ export default function Navbar() {
             </div>
           </div>
           <Link href="/area-salud">Salud</Link>
+          <div className="has-dropdown">
+            <button 
+              className="dropdown-toggle" 
+              aria-expanded={otrasOpen}
+              onClick={() => { setOtrasOpen(!otrasOpen); setDropdownOpen(false); }}
+            >
+              Otras áreas <span className="chev">▼</span>
+            </button>
+            <div className={`dropdown-menu ${otrasOpen ? 'open' : ''}`}>
+              <div className="dropdown-disabled">Derecho Migratorio <span className="proxim">Proximamente</span></div>
+            </div>
+          </div>
           <Link href="/el-estudio">El Estudio</Link>
           <Link href="/novedades">Novedades</Link>
         </div>
@@ -86,6 +100,10 @@ export default function Navbar() {
           <span className="mobile-proxim">Docentes · Proximamente</span>
         </details>
         <Link href="/area-salud" onClick={() => setMobileOpen(false)}>Salud</Link>
+        <details className="mobile-dropdown">
+          <summary>Otras áreas</summary>
+          <span className="mobile-proxim">Derecho Migratorio · Proximamente</span>
+        </details>
         <Link href="/el-estudio" onClick={() => setMobileOpen(false)}>El Estudio</Link>
         <Link href="/novedades" onClick={() => setMobileOpen(false)}>Novedades</Link>
       </div>

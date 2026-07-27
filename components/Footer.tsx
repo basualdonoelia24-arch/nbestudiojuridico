@@ -24,7 +24,9 @@ export default function Footer() {
           <h4>Áreas</h4>
           <Link href="/area-jubilaciones">Jubilaciones y Pensiones</Link>
           <Link href="/area-reajustes">Reajustes de Haberes</Link>
+          <Link href="/area-malvinas">Veteranos de Malvinas</Link>
           <Link href="/area-salud">Salud · Obras Sociales</Link>
+          <Link href="/area-migratorio">Derecho Migratorio</Link>
         </div>
 
         {/* ESTUDIO */}
