@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function ReservaJubilaciones() {
+export default function ReservaMigratorio() {
   const [cuponMsg, setCuponMsg] = useState('');
   const [cuponClass, setCuponClass] = useState('');
   const [horariosDisabled, setHorariosDisabled] = useState(true);
@@ -21,7 +21,7 @@ export default function ReservaJubilaciones() {
 
     const inputFecha = document.getElementById('fechaTurno') as HTMLInputElement;
     const selectHora = document.getElementById('horaTurno') as HTMLSelectElement;
-    
+
     if (inputFecha && selectHora) {
       const HORARIOS_BASE: Record<number, { inicio: string; fin: string }> = {
         1: { inicio: '09:00', fin: '13:00' },
@@ -64,6 +64,7 @@ export default function ReservaJubilaciones() {
 
         if (!this.value) {
           selectHora.innerHTML = '<option value="" disabled selected>Primero elegí una fecha</option>';
+          setHorariosDisabled(true);
           return;
         }
 
@@ -75,12 +76,14 @@ export default function ReservaJubilaciones() {
           alert('Atendemos de lunes a viernes. Por favor elegí un día hábil.');
           this.value = '';
           selectHora.innerHTML = '<option value="" disabled selected>Primero elegí una fecha</option>';
+          setHorariosDisabled(true);
           return;
         }
 
         const horario = HORARIOS_BASE[dia];
         if (!horario) {
           selectHora.innerHTML = '<option value="" disabled selected>Sin atención este día</option>';
+          setHorariosDisabled(true);
           return;
         }
 
@@ -98,6 +101,8 @@ export default function ReservaJubilaciones() {
           opt.textContent = s;
           selectHora.appendChild(opt);
         });
+
+        setHorariosDisabled(false);
       });
     }
   }, []);
@@ -108,7 +113,7 @@ export default function ReservaJubilaciones() {
     const cuponesValidos: Record<string, string> = {
       'NB100': '100% de descuento — Consulta bonificada',
       'NB50': '50% de descuento aplicado',
-      'JUBILA25': '25% de descuento aplicado'
+      'MIGRA25': '25% de descuento aplicado'
     };
     setCuponMsg('');
     setCuponClass('');
@@ -124,10 +129,11 @@ export default function ReservaJubilaciones() {
 
   const handleTurno = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('¡Entrevista reservada! Recibirás un email con todos los datos y el link de la videollamada.');
+    alert('¡Entrevista reservada! Recibirás un email con todos los datos: el link de la videollamada o la dirección del estudio, según la modalidad que elegiste.');
     (e.target as HTMLFormElement).reset();
     setCuponMsg('');
     setCuponClass('');
+    setHorariosDisabled(true);
   };
 
   return (
@@ -144,6 +150,9 @@ export default function ReservaJubilaciones() {
           --mist:        #f0ebe6;
           --ink:         #0e1f33;
           --white:       #ffffff;
+          --gray-line:   rgba(27,58,92,0.12);
+          --radius:      4px;
+          --t:           0.3s ease;
           --f-display: 'Bebas Neue', sans-serif;
           --f-serif:   'DM Serif Display', serif;
           --f-body:    'DM Sans', sans-serif;
@@ -151,8 +160,9 @@ export default function ReservaJubilaciones() {
         .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         .tag { display:inline-block; font-family:var(--f-body); font-size:0.63rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; border:1px solid currentColor; padding:4px 14px; border-radius:999px; }
-        
+
         .page-hero { padding-top:76px; padding-bottom:80px; padding-inline:5%; background:var(--cream); position:relative; overflow:hidden; }
+        .page-hero::before { content:'RADICACIÓN'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--f-display); font-size:24vw; color:rgba(27,58,92,0.025); letter-spacing:0.08em; pointer-events:none; user-select:none; white-space:nowrap; z-index:0; }
         .page-hero-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; display:grid; grid-template-columns:0.85fr 1.2fr; gap:60px; align-items:center; }
         .breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:24px; font-size:0.7rem; color:#6a7a8a; }
         .breadcrumb a { color:var(--rose); }
@@ -162,6 +172,7 @@ export default function ReservaJubilaciones() {
         .page-hero h1 em { font-family:var(--f-serif); font-style:italic; color:var(--rose); }
         .page-hero-sub { font-family:var(--f-serif); font-style:italic; font-size:clamp(1.1rem,1.6vw,1.4rem); color:var(--rose); margin-bottom:18px; }
         .page-hero p.intro { font-size:1.02rem; line-height:1.75; color:#4a5a6a; max-width:54ch; }
+        .hero-etiqueta { margin-top:14px; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rose); opacity:0.85; font-weight:500; }
         .hero-foto { position:relative; width:100%; max-width:380px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; box-shadow:0 30px 70px rgba(27,58,92,0.22); border:5px solid var(--white); outline:1.5px solid var(--rose); outline-offset:7px; }
         .hero-foto img { width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; }
         .hero-foto-wrap { position:relative; padding:18px; }
@@ -194,12 +205,14 @@ export default function ReservaJubilaciones() {
         .aviso-inner { max-width:780px; margin:0 auto; }
         .tag-imp { display:inline-block; font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--rose); padding:6px 18px; border:1.5px solid var(--rose); border-radius:999px; margin-bottom:20px; }
         .aviso-inner h3 { font-family:var(--f-serif); font-size:clamp(1.3rem,2.2vw,1.8rem); line-height:1.4; margin-bottom:24px; }
-        .claves-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:24px; }
-        .clave-card { background:rgba(200,132,106,0.1); border:1px solid rgba(200,132,106,0.3); border-left:4px solid var(--rose); padding:24px; border-radius:3px; text-align:left; display:flex; align-items:center; gap:16px; }
-        .clave-icon { width:48px; height:48px; flex-shrink:0; background:var(--rose); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; }
-        .clave-label { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--rose); font-weight:600; margin-bottom:4px; }
-        .clave-nombre { font-family:var(--f-serif); font-size:1.15rem; color:var(--cream); }
-        .clave-desc { font-size:0.82rem; color:rgba(250,247,245,0.75); line-height:1.5; }
+
+        .docs-lista { display:flex; flex-direction:column; gap:14px; margin-top:8px; }
+        .doc-item { background:rgba(200,132,106,0.08); border:1px solid rgba(200,132,106,0.25); border-left:3px solid var(--rose); padding:18px 22px; border-radius:var(--radius); display:flex; align-items:flex-start; gap:18px; transition:all 0.3s ease; }
+        .doc-item:hover { background:rgba(200,132,106,0.12); border-left-color:var(--rose-deep); }
+        .doc-num { width:34px; height:34px; flex-shrink:0; background:var(--rose); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--f-serif); font-size:1.05rem; font-weight:500; box-shadow:0 4px 10px rgba(200,132,106,0.30); }
+        .doc-info .doc-titulo { font-family:var(--f-serif); font-size:1.05rem; color:var(--cream); margin-bottom:4px; line-height:1.3; }
+        .doc-info .doc-desc { font-size:0.85rem; opacity:0.78; line-height:1.6; color:var(--cream); }
+        .doc-info .doc-desc strong { color:var(--rose); font-weight:600; }
 
         .como-accedes { background:var(--navy); color:var(--cream); padding:clamp(64px,7vw,100px) 5%; position:relative; overflow:hidden; border-top:3px solid var(--rose); }
         .como-accedes::before { content:'PROCESO'; position:absolute; top:50%; right:-8%; transform:translateY(-50%); font-family:var(--f-display); font-size:24vw; color:rgba(200,132,106,0.04); letter-spacing:0.08em; pointer-events:none; user-select:none; line-height:1; }
@@ -244,7 +257,7 @@ export default function ReservaJubilaciones() {
         .btn-pagar { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:18px 32px; background:var(--rose); color:var(--white); font-family:var(--f-body); font-size:0.85rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border-radius:var(--radius); border:none; cursor:pointer; transition:var(--t); text-decoration:none; }
         .btn-pagar:hover { background:var(--rose-hover); transform:translateY(-2px); }
         .pago-nota { font-size:0.78rem; color:#6a7a8a; line-height:1.5; }
-        
+
         .recordatorio-card { background:var(--white); border:1px solid rgba(27,58,92,0.1); border-radius:var(--radius); padding:36px; box-shadow:0 12px 40px rgba(27,58,92,0.06); }
         .recordatorio-card h4 { font-family:var(--f-serif); font-size:1.2rem; color:var(--navy); margin-bottom:8px; line-height:1.3; }
         .recordatorio-card .reco-sub { font-size:0.85rem; color:var(--rose); letter-spacing:0.06em; font-weight:500; margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid rgba(27,58,92,0.08); }
@@ -265,7 +278,7 @@ export default function ReservaJubilaciones() {
         .mail-aviso { margin-top:32px; padding:22px; background:rgba(200,132,106,0.1); border-left:3px solid var(--rose); border-radius:var(--radius); }
         .mail-titulo { display:flex; align-items:center; gap:10px; font-size:0.82rem; color:var(--rose); font-weight:600; letter-spacing:0.06em; margin-bottom:8px; }
         .mail-aviso p { font-size:0.85rem; opacity:0.75; line-height:1.6; }
-        
+
         .form-card { background:rgba(255,255,255,0.08); border:2px solid rgba(200,132,106,0.45); border-radius:var(--radius); padding:clamp(28px,3vw,44px); box-shadow:0 12px 32px rgba(0,0,0,0.18); position:relative; z-index:3; }
         .form-titulo-wrap { display:flex; flex-direction:column; gap:6px; padding-bottom:20px; margin-bottom:24px; border-bottom:1px solid rgba(200,132,106,0.25); }
         .form-titulo { font-family:var(--f-display); font-size:1.5rem; letter-spacing:0.18em; color:var(--rose); }
@@ -274,13 +287,20 @@ export default function ReservaJubilaciones() {
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
         .fg { display:flex; flex-direction:column; gap:7px; }
         .fg label { font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--white); font-weight:600; }
-        .form-row .fg label { flex:1; }
         .fg input, .fg textarea, .fg select { background:var(--white); border:2px solid transparent; color:var(--ink); border-radius:var(--radius); padding:14px 16px; font-family:var(--f-body); font-size:1rem; outline:none; transition:border-color var(--t), box-shadow var(--t); }
         .fg input::placeholder, .fg textarea::placeholder { color:#8a99a8; opacity:1; }
         .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
         .fg select { color:var(--ink); cursor:pointer; }
         .fg select option { background:var(--white); color:var(--ink); }
-        .fg textarea { resize:vertical; min-height:110px; line-height:1.5; }
+        .fg textarea { resize:vertical; min-height:150px; line-height:1.5; }
+
+        .radio-group { display:flex; flex-direction:column; gap:10px; margin-top:2px; }
+        .radio-label { display:flex; align-items:flex-start; gap:12px; padding:14px 18px; background:var(--white); border:2px solid transparent; border-radius:var(--radius); cursor:pointer; font-size:0.95rem; color:var(--ink); transition:border-color var(--t), box-shadow var(--t); }
+        .radio-label:hover { border-color:rgba(200,132,106,0.5); }
+        .radio-label input[type="radio"] { width:18px; height:18px; margin-top:3px; accent-color:var(--rose); cursor:pointer; flex-shrink:0; }
+        .radio-label:has(input:checked) { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
+        .radio-label small { display:block; font-size:0.8rem; color:#6a7a8a; margin-top:3px; line-height:1.5; }
+
         .cupon-row { display:flex; gap:12px; align-items:flex-end; }
         .cupon-row .fg { flex:1; }
         .cupon-row button { padding:14px 28px; background:var(--rose); color:var(--white); border:none; border-radius:var(--radius); font-weight:600; font-size:0.85rem; cursor:pointer; transition:background 0.3s; }
@@ -290,8 +310,6 @@ export default function ReservaJubilaciones() {
         .cupon-msg.ok { background:rgba(76,175,80,0.1); color:#4caf50; border:1px solid #4caf50; }
         .cupon-msg.error { background:rgba(244,67,54,0.1); color:#f44336; border:1px solid #f44336; }
         .form-aviso { font-size:0.85rem; color:#6a7a8a; line-height:1.5; padding:12px 0; border-top:1px solid var(--gray-line); }
-        .nro-operacion { background:rgba(200,132,106,0.18); border:1px solid rgba(200,132,106,0.4); border-left:5px solid var(--rose); border-radius:var(--radius); padding:22px; }
-        .nro-operacion label { color:var(--rose) !important; font-size:0.85rem !important; }
         .btn-confirmar { padding:18px 32px; background:var(--rose); color:var(--white); font-family:var(--f-body); font-size:0.9rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border-radius:var(--radius); border:none; cursor:pointer; transition:background 0.3s; width:100%; }
         .btn-confirmar:hover { background:var(--rose-hover); }
 
@@ -300,7 +318,6 @@ export default function ReservaJubilaciones() {
           .paso-inner { grid-template-columns:1fr; }
           .paso2-inner { grid-template-columns:1fr; }
           .qh-grid { grid-template-columns:1fr; }
-          .claves-grid { grid-template-columns:1fr; }
           .form-row { grid-template-columns:1fr; }
           .ca-pasos { grid-template-columns:1fr 1fr; gap:18px; }
           .ca-paso:nth-child(2)::after { display:none; }
@@ -308,6 +325,11 @@ export default function ReservaJubilaciones() {
         @media(max-width:600px) {
           .ca-pasos { grid-template-columns:1fr; gap:18px; }
           .ca-paso::after { display:none; }
+          .doc-item { padding:14px 16px; gap:12px; }
+          .doc-num { width:28px; height:28px; font-size:0.9rem; }
+          .doc-info .doc-titulo { font-size:0.95rem; }
+          .doc-info .doc-desc { font-size:0.78rem; }
+          .hero-etiqueta { font-size:0.7rem; letter-spacing:0.12em; }
         }
       `}</style>
 
@@ -325,14 +347,15 @@ export default function ReservaJubilaciones() {
             <div className="breadcrumb">
               <Link href="/">Inicio</Link>
               <span className="sep">/</span>
-              <Link href="/area-jubilaciones">Jubilaciones</Link>
+              <Link href="/area-migratorio">Derecho Migratorio</Link>
               <span className="sep">/</span>
               <span>Reservar turno</span>
             </div>
-            <span className="area-tag">⚖ JUBILACIONES Y PENSIONES</span>
-            <h1>Reservá tu <em>turno</em></h1>
-            <p className="page-hero-sub">Consulta personalizada sobre jubilación y pensiones</p>
-            <p className="intro">Selecciona una fecha y hora disponible para tu <strong>entrevista individual</strong>. Te responderemos todas tus dudas sobre opciones de jubilación.</p>
+            <span className="area-tag">⚖ DERECHO MIGRATORIO</span>
+            <h1>RESERVA <em>de turno</em></h1>
+            <p className="page-hero-sub">Regularizar tu situación migratoria es el primer paso para ejercer todos tus derechos.</p>
+            <p className="intro"><strong>Asesoramiento personalizado</strong> con la Dra. Noelia Basualdo. Una entrevista —<strong>presencial en el estudio o por videollamada</strong>, como te quede mejor— donde revisamos tu situación migratoria, la documentación con la que contás y definimos el camino más conveniente para tu radicación, tu ciudadanía o la regularización de tu permanencia en el país.</p>
+            <p className="hero-etiqueta">· Radicación · Ciudadanía · Regularización</p>
           </div>
         </div>
       </section>
@@ -348,20 +371,20 @@ export default function ReservaJubilaciones() {
             <div className="qh-card">
               <div className="qh-num">01</div>
               <div className="qh-icon">📋</div>
-              <h3>Evaluamos tu caso en concreto</h3>
-              <p>Analizamos tu situación particular, revisamos tu historia laboral y entendemos exactamente dónde estás parado para iniciar tu trámite jubilatorio.</p>
+              <h3>Análisis de tu situación migratoria</h3>
+              <p>Revisamos cómo y cuándo ingresaste al país, en qué categoría estás hoy, si hay vencimientos, permanencias irregulares o una orden de expulsión.</p>
             </div>
             <div className="qh-card">
               <div className="qh-num">02</div>
-              <div className="qh-icon">🔢</div>
-              <h3>Calculamos cuántos años tenés trabajados</h3>
-              <p>Hacemos el cálculo exacto de tus aportes y servicios reconocidos, identificando posibles períodos faltantes y cómo recuperarlos.</p>
+              <div className="qh-icon">⚖️</div>
+              <h3>Qué trámite te corresponde</h3>
+              <p>Te decimos con honestidad qué criterio de radicación aplica a tu caso (Mercosur, familiar de argentino, trabajo, estudio, arraigo), si es viable y qué obstáculos concretos hay.</p>
             </div>
             <div className="qh-card">
               <div className="qh-num">03</div>
               <div className="qh-icon">🎯</div>
-              <h3>Diseñamos la mejor estrategia</h3>
-              <p>Planificamos juntos el camino más conveniente para que puedas acceder a tu jubilación, optimizando tiempos y resultados.</p>
+              <h3>Estrategia y próximos pasos</h3>
+              <p>Armamos el plan de trabajo: qué documentación conseguir, qué hay que apostillar o traducir, cómo se carga el expediente en Migraciones y en qué plazos.</p>
             </div>
           </div>
         </div>
@@ -371,37 +394,40 @@ export default function ReservaJubilaciones() {
       <section className="oportunidad">
         <div className="op-inner">
           <h2>NO TE PIERDAS<br/>ESTA <em>oportunidad</em></h2>
-          <p>Agendá tu entrevista por videollamada y comenzá hoy a planificar tu futuro jubilatorio.</p>
-          <span className="op-video">📹 Entrevista por videollamada · 30 minutos</span>
+          <p>Agendá tu entrevista y comenzá hoy a regularizar tu situación migratoria.</p>
+          <span className="op-video">📹 Presencial en el estudio o por videollamada · 50 minutos</span>
         </div>
       </section>
 
-      {/* AVISO IMPORTANTE */}
+      {/* QUÉ TRAER A LA CONSULTA */}
       <section className="aviso-bloque">
         <div className="aviso-inner">
           <span className="tag-imp">⚠ Importante</span>
-          <h3>Es muy importante que cuentes con tus claves activas</h3>
-          <p style={{fontSize:'0.95rem', opacity:0.78, maxWidth:'60ch', margin:'0 auto 8px', lineHeight:1.7}}>
-            Para que la consulta sea efectiva, necesitamos acceder a tu historia previsional. Si todavía no las tenés o están desactualizadas, podés gestionarlas de forma online antes del turno.
+          <h3>¿Qué traer a la consulta?</h3>
+          <p style={{fontSize:'0.95rem', opacity:0.78, maxWidth:'60ch', margin:'0 auto 24px', lineHeight:1.7}}>
+            Para que podamos analizar tu caso de manera completa, conviene tener a mano los siguientes documentos. Alcanza con fotos legibles o escaneos.
           </p>
-          <div className="claves-grid">
-            <div className="clave-card">
-              <div className="clave-icon">🔐</div>
-              <div>
-                <div className="clave-label">Necesitás tu</div>
-                <div className="clave-nombre">Clave de ANSES</div>
-                <div className="clave-desc">Para acceder a tu historia laboral y aportes</div>
+
+          <div className="docs-lista" style={{maxWidth:'780px', margin:'0 auto', textAlign:'left'}}>
+            <div className="doc-item">
+              <div className="doc-num">1</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Documento de tu país de origen</div>
+                <div className="doc-desc">Pasaporte, DNI o cédula <strong>vigente</strong>. Foto de la hoja de datos personales y de las páginas con sellos de ingreso y salida.</div>
               </div>
             </div>
-            <div className="clave-card">
-              <div className="clave-icon">🔐</div>
-              <div>
-                <div className="clave-label">Necesitás tu</div>
-                <div className="clave-nombre">Clave de AFIP</div>
-                <div className="clave-desc">Para validar tu situación fiscal y aportes</div>
+            <div className="doc-item">
+              <div className="doc-num">2</div>
+              <div className="doc-info">
+                <div className="doc-titulo">Notificaciones de Migraciones</div>
+                <div className="doc-desc">Si ya hiciste un trámite: número de expediente RADEX, disposiciones, intimaciones, rechazos u <strong>órdenes de expulsión</strong>. Estas últimas tienen plazos muy cortos para impugnar.</div>
               </div>
             </div>
           </div>
+
+          <p style={{fontSize:'0.88rem', opacity:0.65, maxWidth:'60ch', margin:'24px auto 0', fontStyle:'italic', textAlign:'center', lineHeight:1.6}}>
+            No es indispensable tener TODO para la consulta. Justamente parte del trabajo es decirte qué te falta y cómo conseguirlo.
+          </p>
         </div>
       </section>
 
@@ -411,14 +437,14 @@ export default function ReservaJubilaciones() {
           <div className="ca-header">
             <span className="tag-rosa">El proceso</span>
             <h2>¿CÓMO ACCEDÉS<br/><em>a la consulta</em>?</h2>
-            <p>En 4 pasos simples reservás tu entrevista virtual con la Dra. Basualdo. El proceso es 100% online y te lleva menos de 5 minutos completarlo.</p>
+            <p>En 4 pasos simples reservás tu entrevista con la Dra. Basualdo, presencial o por videollamada. La reserva es 100% online y te lleva menos de 5 minutos completarla.</p>
           </div>
           <div className="ca-pasos">
             <div className="ca-paso">
               <div className="ca-paso-num">1</div>
               <div className="ca-paso-icon">📝</div>
               <h4>Completás el formulario</h4>
-              <p>Cargás tus datos personales y elegís la fecha y hora del turno que mejor te convenga.</p>
+              <p>Cargás tus datos, elegís la modalidad (presencial o virtual) y la fecha y hora que mejor te convengan.</p>
             </div>
             <div className="ca-paso">
               <div className="ca-paso-num">2</div>
@@ -430,13 +456,13 @@ export default function ReservaJubilaciones() {
               <div className="ca-paso-num">3</div>
               <div className="ca-paso-icon">📧</div>
               <h4>Recibís la confirmación</h4>
-              <p>Te llega un mail con todos los datos de tu entrevista para que la agendes en tu calendario.</p>
+              <p>Te llega un mail con el link de la videollamada o la dirección del estudio, según la modalidad que elijas.</p>
             </div>
             <div className="ca-paso">
               <div className="ca-paso-num">4</div>
               <div className="ca-paso-icon">📹</div>
               <h4>Tenés tu entrevista</h4>
-              <p>Te conectás por videollamada el día y hora elegidos. Duración: 30 minutos.</p>
+              <p>Te conectás por videollamada o venís al estudio, según lo que hayas elegido. Duración: 50 minutos.</p>
             </div>
           </div>
         </div>
@@ -449,11 +475,11 @@ export default function ReservaJubilaciones() {
             <div className="paso-numero-grande">01</div>
             <span className="paso-label">Primer paso</span>
             <h2>CONOCÉ EL <em>valor</em></h2>
-            <p>La consulta virtual tiene un valor único e incluye todo lo descripto en este servicio. <strong>El pago se realiza al final</strong>, después de completar tus datos y elegir fecha y horario.</p>
+            <p>La consulta tiene un valor único, sea presencial o virtual, e incluye todo lo descripto en este servicio. <strong>El pago se realiza al final</strong>, después de completar tus datos y elegir fecha y horario.</p>
             <p>Aceptamos todos los medios de pago a través de Mercado Pago: tarjetas de crédito, débito, dinero en cuenta y transferencia.</p>
             <div className="precio-card">
-              <div className="precio-label">Valor de la consulta virtual</div>
-              <div className="precio-monto">$50.000</div>
+              <div className="precio-label">Valor de la consulta · presencial o virtual</div>
+              <div className="precio-monto">$65.000</div>
               <div className="precio-detalle">Pago seguro vía Mercado Pago · Si tenés código de descuento, podrás aplicarlo en el formulario</div>
             </div>
             <div className="pago-acciones">
@@ -464,27 +490,27 @@ export default function ReservaJubilaciones() {
 
           <div className="recordatorio-card">
             <h4>Te recordamos que vamos a:</h4>
-            <p className="reco-sub">EN ESTA CONSULTA VIRTUAL</p>
+            <p className="reco-sub">EN ESTA CONSULTA</p>
             <div className="reco-list">
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
                   <strong>Asesorarte de manera integral</strong>
-                  Para que el paso al sector pasivo lo hagas con toda la información que necesitás, sin sorpresas ni decisiones apuradas.
+                  Para que sepas con claridad en qué situación migratoria estás y qué derechos tenés hoy, sin decisiones apuradas ni trámites innecesarios.
                 </div>
               </div>
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
-                  <strong>Calcular los años aportados</strong>
-                  Análisis detallado de tus aportes registrados y períodos reconocidos para saber exactamente dónde estás parado.
+                  <strong>Revisar tu documentación</strong>
+                  Qué papeles ya tenés, cuáles hay que apostillar o traducir y cuáles hay que pedir en tu país de origen antes de iniciar el expediente.
                 </div>
               </div>
               <div className="reco-item">
                 <span className="check">✓</span>
                 <div>
                   <strong>Diagramar la mejor estrategia</strong>
-                  Para que cuando obtengas tu haber jubilatorio sea el más elevado posible.
+                  Para que llegues a tu radicación o a tu ciudadanía por el camino más corto y seguro que permita tu caso.
                 </div>
               </div>
             </div>
@@ -508,7 +534,7 @@ export default function ReservaJubilaciones() {
             <div className="paso-numero-grande">02</div>
             <span className="paso-label">Segundo paso</span>
             <h2>COMPLETÁ EL <em>formulario</em></h2>
-            <p>Ahora para finalizar, completá el formulario. <strong>Es indispensable</strong> seleccionar la fecha y la hora para tu entrevista.</p>
+            <p>Ahora para finalizar, completá el formulario. <strong>Es indispensable</strong> seleccionar la modalidad, la fecha y la hora para tu entrevista.</p>
             <div className="mail-aviso">
               <div className="mail-titulo">📧 ¿Qué pasa después?</div>
               <p>Vas a recibir un mail con todos los datos de tu entrevista, <strong>incluso para que lo puedas agendar</strong> en tu calendario.</p>
@@ -526,7 +552,7 @@ export default function ReservaJubilaciones() {
                 <div className="fg"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
               </div>
               <div className="form-row">
-                <div className="fg"><label>CUIL *</label><input type="text" placeholder="20-12345678-9" required /></div>
+                <div className="fg"><label>Documento *</label><input type="text" placeholder="Pasaporte, DNI extranjero, cédula o CUIL" required /></div>
                 <div className="fg"><label>Fecha de nacimiento *</label><input type="date" required /></div>
               </div>
               <div className="form-row">
@@ -534,33 +560,120 @@ export default function ReservaJubilaciones() {
                 <div className="fg"><label>WhatsApp *</label><input type="tel" placeholder="+54 11 xxxxxxxx" required /></div>
               </div>
               <div className="form-row">
-                <div className="fg"><label>Provincia *</label><select required defaultValue=""><option value="" disabled>Seleccioná</option><option>Buenos Aires</option><option>CABA</option><option>Córdoba</option></select></div>
+                <div className="fg">
+                  <label>Provincia *</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>Seleccioná</option>
+                    <option>Buenos Aires</option><option>CABA</option><option>Catamarca</option>
+                    <option>Chaco</option><option>Chubut</option><option>Córdoba</option>
+                    <option>Corrientes</option><option>Entre Ríos</option><option>Formosa</option>
+                    <option>Jujuy</option><option>La Pampa</option><option>La Rioja</option>
+                    <option>Mendoza</option><option>Misiones</option><option>Neuquén</option>
+                    <option>Río Negro</option><option>Salta</option><option>San Juan</option>
+                    <option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option>
+                    <option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
+                  </select>
+                </div>
                 <div className="fg"><label>Localidad *</label><input type="text" placeholder="Tu ciudad" required /></div>
               </div>
-              <div className="fg"><label>¿Tenés Clave de ANSES y AFIP activas? *</label><select required defaultValue=""><option value="" disabled>Seleccioná</option><option>Sí, tengo ambas activas</option><option>No tengo ninguna</option></select></div>
+
+              <div className="form-row">
+                <div className="fg">
+                  <label>Nacionalidad *</label>
+                  <input type="text" placeholder="Ej: Venezolana, Peruana, Boliviana, Colombiana..." required />
+                </div>
+                <div className="fg">
+                  <label>¿Desde cuándo estás en Argentina? *</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>Seleccioná</option>
+                    <option>Todavía no llegué / estoy por viajar</option>
+                    <option>Menos de 6 meses</option>
+                    <option>Entre 6 meses y 2 años</option>
+                    <option>Entre 2 y 5 años</option>
+                    <option>Más de 5 años</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="fg">
+                  <label>¿Qué trámite necesitás? *</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>Seleccioná</option>
+                    <option>Radicación temporaria</option>
+                    <option>Radicación permanente</option>
+                    <option>Renovación o cambio de categoría</option>
+                    <option>Regularización (permanencia irregular o vencida)</option>
+                    <option>Radicación por vínculo con argentino/a</option>
+                    <option>Ciudadanía argentina</option>
+                    <option>Expulsión, rechazo o prohibición de reingreso</option>
+                    <option>Todavía no sé / necesito orientación</option>
+                  </select>
+                </div>
+                <div className="fg">
+                  <label>¿Ya iniciaste trámite en Migraciones? *</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>Seleccioná</option>
+                    <option>No, nunca inicié nada</option>
+                    <option>Sí, tengo expediente RADEX en curso</option>
+                    <option>Sí, pero fue rechazado o quedó frenado</option>
+                    <option>Tengo una notificación o intimación de Migraciones</option>
+                    <option>No estoy seguro/a</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="fg">
+                <label>¿Cómo preferís la entrevista? *</label>
+                <div className="radio-group">
+                  <label className="radio-label">
+                    <input type="radio" name="modalidad" value="virtual" required />
+                    <span>
+                      Por videollamada
+                      <small>Te enviamos el link por email. Desde donde estés, con celular o computadora.</small>
+                    </span>
+                  </label>
+                  <label className="radio-label">
+                    <input type="radio" name="modalidad" value="presencial" required />
+                    <span>
+                      Presencial en el estudio
+                      <small>Bolívar 382, CABA. Ideal si traés documentación original para revisar.</small>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
               <div className="form-row">
                 <div className="fg"><label>Fecha del turno *</label><input type="date" id="fechaTurno" required /></div>
-                <div className="fg"><label>Horario *</label><select id="horaTurno" required disabled={horariosDisabled}><option value="" disabled>Primero elegí una fecha</option></select></div>
+                <div className="fg"><label>Horario *</label><select id="horaTurno" required disabled={horariosDisabled} defaultValue=""><option value="" disabled>Primero elegí una fecha</option></select></div>
               </div>
-              <div className="fg"><label>Situación previsional *</label><textarea placeholder="Contanos tu caso..." required></textarea></div>
+
+              <div className="fg">
+                <label>Contanos tu caso *</label>
+                <textarea
+                  required
+                  placeholder={"Ej: Entré al país en 2021 por vía terrestre y nunca regularicé mi situación. Trabajo en negro porque no tengo DNI y quiero saber si puedo tramitar la residencia.\n\nPara conocer bien tu situación, ayudanos a entender también:\n▸ ¿Cómo ingresaste al país (aéreo, terrestre, con sello o sin sello)?\n▸ ¿Tenés familiares argentinos o residentes (pareja, hijos, padres)?\n▸ ¿Tenés antecedentes penales o causas abiertas en algún país?\n▸ ¿Hay menores de edad involucrados en el trámite?"}
+                ></textarea>
+              </div>
+
               <div className="cupon-row">
-                <div className="fg"><label>Código descuento (opcional)</label><input type="text" id="cuponInput" placeholder="Código..." /></div>
+                <div className="fg"><label>Código de descuento (opcional)</label><input type="text" id="cuponInput" placeholder="Si tenés un código, ingresalo aquí" /></div>
                 <button type="button" onClick={aplicarCupon}>Aplicar</button>
               </div>
               {cuponMsg && <div className={`cupon-msg ${cuponClass}`}>{cuponMsg}</div>}
-              <p className="form-aviso">🔒 Tu información es confidencial. Recibirás confirmación en 24hs hábiles.</p>
+
+              <p className="form-aviso">🔒 Tu información es confidencial. Recibirás la confirmación de tu entrevista en tu email dentro de las 24 hs hábiles, con el link de la videollamada o la dirección del estudio según la modalidad que elijas.</p>
+              <p className="form-aviso" style={{fontSize:'0.68rem', opacity:0.4}}>
+                Este sitio está protegido por reCAPTCHA y se aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Términos del servicio</a> de Google.
+              </p>
+
               <button type="submit" className="btn-confirmar">Pagar y confirmar mi entrevista →</button>
             </form>
           </div>
         </div>
       </section>
 
-      <a href="https://wa.me/5491178200546"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Escribinos por WhatsApp"
-        style={{position:'fixed', bottom:'24px', right:'24px', width:'60px', height:'60px', background:'#25D366', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 16px rgba(200,132,106,0.4)', zIndex:90}}
-      >
+      <a href="https://wa.me/5491178200546" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp" style={{position:'fixed', bottom:'24px', right:'24px', width:'60px', height:'60px', background:'#25D366', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 16px rgba(37,211,102,0.4)', zIndex:90}}>
         <svg width="32" height="32" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.988 2.896 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>

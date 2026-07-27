@@ -277,6 +277,7 @@ export default function ReservaSalud() {
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
         .fg { display:flex; flex-direction:column; gap:7px; }
         .fg label { font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--white); font-weight:600; }
+        .form-row .fg label { flex:1; }
         .fg input, .fg textarea, .fg select { background:var(--white); border:2px solid transparent; color:var(--ink); border-radius:var(--radius); padding:14px 16px; font-family:var(--f-body); font-size:1rem; outline:none; transition:border-color var(--t), box-shadow var(--t); }
         .fg input::placeholder, .fg textarea::placeholder { color:#8a99a8; opacity:1; }
         .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--rose); box-shadow:0 0 0 3px rgba(200,132,106,0.25); }
