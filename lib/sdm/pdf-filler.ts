@@ -30,26 +30,29 @@ export async function rellenarPDFTemplate(
     const fields = form.getFields()
 
     for (const field of fields) {
-  const nombreCampo = field.getName()
+      const nombreCampo = field.getName()
 
-  if (campos[nombreCampo]) {
-    try {
-      const value = campos[nombreCampo]
-      const fieldAny = field as any
-      if (fieldAny.setText) {
-        fieldAny.setText(value)
+      if (campos[nombreCampo]) {
+        try {
+          const value = campos[nombreCampo]
+          const fieldAny = field as any
+          if (fieldAny.setText) {
+            fieldAny.setText(value)
+          }
+        } catch (error) {
+          console.warn(`No se pudo rellenar campo ${nombreCampo}`)
+        }
       }
-    } catch (error) {
-      console.warn(`No se pudo rellenar campo ${nombreCampo}`)
     }
-  }
-}
 
-    // Flatear el formulario
+    // Generar apariencias de los campos completados
+    form.updateFieldAppearances()
+
+    // Aplanar el formulario
     form.flatten()
 
-    // Guardar a bytes
-    const pdfBytes = await pdfDoc.save()
+    // Guardar a bytes (sin object streams: Adobe los procesa mal al imprimir)
+    const pdfBytes = await pdfDoc.save({ useObjectStreams: false })
     return Buffer.from(pdfBytes)
   } catch (error) {
     throw new Error(
